@@ -1,3 +1,1184 @@
 <!doctype html>
-<h1>Test</h1>
+<html lang="ar" dir="rtl" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>متجر سهم - محاكاة متقدمة</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&amp;display=swap" rel="stylesheet">
+  <style>
+*{font-family:'Tajawal',sans-serif;box-sizing:border-box}
+html,body{height:100%;margin:0;overflow:hidden}
+.app-root{height:100%;width:100%;overflow-y:auto;overflow-x:hidden;background:linear-gradient(135deg,#0f0f23 0%,#1a1a3e 50%,#0f0f23 100%)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse-glow{0%,100%{box-shadow:0 0 20px rgba(16,185,129,0.3)}50%{box-shadow:0 0 40px rgba(16,185,129,0.6)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
+@keyframes countUp{from{opacity:0;transform:scale(0.5)}to{opacity:1;transform:scale(1)}}
+@keyframes bounce-pop{0%{transform:scale(1)}50%{transform:scale(1.15)}100%{transform:scale(1)}}
+@keyframes money-drop{from{opacity:1;transform:translateY(-40px)}to{opacity:0;transform:translateY(40px)}}
+@keyframes float{0%,100%{transform:translateY(0px)}50%{transform:translateY(-8px)}}
+@keyframes glow-pulse{0%{filter:drop-shadow(0 0 5px rgba(16,185,129,0.3))}50%{filter:drop-shadow(0 0 20px rgba(16,185,129,0.8))}100%{filter:drop-shadow(0 0 5px rgba(16,185,129,0.3))}}
+@keyframes shimmer{0%{background-position:0%}100%{background-position:200%}}
+@keyframes upgrade-spin{from{transform:rotateY(0deg)}to{transform:rotateY(360deg)}}
+.anim-fade{animation:fadeUp 0.5s ease both}
+.anim-slide{animation:slideIn 0.4s ease both}
+.anim-count{animation:countUp 0.3s ease both}
+.anim-bounce{animation:bounce-pop 0.4s ease}
+.money-pop{animation:money-drop 0.8s ease-in both;pointer-events:none}
+.glow-green{animation:pulse-glow 2s infinite}
+.glow-challenge{animation:glow-pulse 2s infinite}
+.card-hover{transition:all 0.3s;perspective:1000px}
+.card-hover:hover{transform:translateY(-4px) rotateX(5deg);box-shadow:0 12px 40px rgba(0,0,0,0.3)}
+.btn-action{transition:all 0.2s;cursor:pointer}
+.btn-action:hover{transform:scale(1.05);filter:brightness(1.15)}
+.btn-action:active{transform:scale(0.95)}
+.progress-bar{transition:width 0.8s ease}
+.toast-msg{animation:slideIn 0.3s ease both}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#1a1a2e}
+::-webkit-scrollbar-thumb{background:#10b981;border-radius:3px}
+.tab-active{border-bottom:3px solid #10b981;color:#10b981}
+.notification-badge{position:absolute;top:-5px;right:-5px;background:#f97316;color:white;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:bold}
+.department-card{border:2px solid;border-radius:12px;padding:14px;transition:all 0.3s;background:rgba(16,185,129,0.05)}
+.department-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(16,185,129,0.2)}
+.upgrade-card{background:linear-gradient(135deg,rgba(251,191,36,0.2),rgba(245,158,11,0.1));border:2px solid #fbbf24;border-radius:12px;padding:16px;transition:all 0.3s;position:relative;overflow:hidden}
+.upgrade-card:hover{transform:translateY(-4px);box-shadow:0 0 30px rgba(251,191,36,0.3)}
+.upgrade-card.unlocked{background:linear-gradient(135deg,rgba(16,185,129,0.2),rgba(34,197,94,0.1));border-color:#10b981;box-shadow:0 0 20px rgba(16,185,129,0.3)}
+.upgrade-reward{display:inline-block;background:linear-gradient(135deg,#fbbf24 0%,#f59e0b 100%);color:#000;padding:6px 12px;border-radius:6px;font-size:0.75rem;font-weight:bold;margin-top:8px}
+.capacity-bar{height:20px;background:rgba(16,185,129,0.2);border-radius:6px;overflow:hidden;border:1px solid rgba(16,185,129,0.4)}
+.capacity-fill{height:100%;background:linear-gradient(90deg,#10b981,#34d399);transition:width 0.5s ease}
+.warning-low{background:linear-gradient(90deg,#ef4444,#f87171)!important}
+.ad-campaign{background:linear-gradient(135deg,rgba(236,72,153,0.2),rgba(168,85,247,0.2));border:2px solid #ec4899;border-radius:12px;padding:16px;transition:all 0.3s;position:relative;overflow:hidden}
+.ad-campaign:hover{transform:translateY(-4px);box-shadow:0 0 40px rgba(236,72,153,0.3)}
+.ad-reward{display:inline-block;background:linear-gradient(135deg,#06b6d4,#0891b2);color:white;padding:6px 12px;border-radius:6px;font-size:0.75rem;font-weight:bold;margin-top:8px}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;padding:8px 0}
+.product-card{background:linear-gradient(135deg,rgba(30,144,255,0.1),rgba(16,185,129,0.1));border:1px solid rgba(16,185,129,0.3);border-radius:10px;padding:12px;transition:all 0.2s;cursor:pointer}
+.product-card:hover{transform:translateY(-3px);border-color:#10b981;box-shadow:0 8px 20px rgba(16,185,129,0.2)}
+.product-card.low-stock{border-color:#ef4444;background:linear-gradient(135deg,rgba(239,68,68,0.1),rgba(16,185,129,0.05))}
+.category-header{display:flex;align-items:center;gap:8px;padding:12px;background:rgba(16,185,129,0.1);border-right:4px solid;border-radius:8px;margin:16px 0 8px 0;cursor:pointer;transition:all 0.3s}
+.category-header:hover{background:rgba(16,185,129,0.2);transform:translateX(-4px)}
+.category-toggle{transition:transform 0.3s}
+.category-toggle.collapsed{transform:rotate(-90deg)}
+.challenge-card{background:linear-gradient(135deg,rgba(16,185,129,0.2) 0%,rgba(34,197,94,0.1) 100%);border:2px solid #10b981;border-radius:12px;padding:16px;transition:all 0.3s;position:relative;overflow:hidden}
+.challenge-card:hover{transform:translateY(-6px);box-shadow:0 0 30px rgba(16,185,129,0.4);border-color:#34d399}
+.difficulty-badge{display:inline-block;padding:4px 8px;border-radius:6px;font-size:0.7rem;font-weight:bold}
+.difficulty-easy{background:#10b981;color:white}
+.difficulty-medium{background:#eab308;color:#000}
+.difficulty-hard{background:#ef4444;color:white}
+.commercial-card{background:linear-gradient(135deg,rgba(59,130,246,0.2),rgba(99,102,241,0.2));border:2px solid #3b82f6;border-radius:12px;padding:16px;transition:all 0.3s}
+.commercial-card:hover{transform:translateY(-4px);box-shadow:0 0 30px rgba(59,130,246,0.3)}
+.commercial-card.owned{background:linear-gradient(135deg,rgba(34,197,94,0.2),rgba(16,185,129,0.2));border-color:#10b981}
+.bill-card{background:linear-gradient(135deg,rgba(239,68,68,0.2),rgba(244,114,114,0.1));border:2px solid #ef4444;border-radius:12px;padding:16px;transition:all 0.3s}
+.bill-card.paid{background:linear-gradient(135deg,rgba(16,185,129,0.2),rgba(34,197,94,0.1));border-color:#10b981}
+.resource-card{background:linear-gradient(135deg,rgba(168,85,247,0.2),rgba(139,92,246,0.1));border:2px solid #a855f7;border-radius:12px;padding:16px;transition:all 0.3s;position:relative}
+.resource-card:hover{transform:translateY(-4px);box-shadow:0 0 30px rgba(168,85,247,0.3)}
+  </style>
+  <script>
+tailwind.config={theme:{extend:{}}}
+</script>
+  <style>body { box-sizing: border-box; }</style>
+ </head>
+ <body class="h-full bg-[#0f0f23] text-gray-100">
+  <div id="app" class="app-root">
+   <div id="splash-screen" class="h-full w-full flex flex-col items-center justify-center bg-gradient-to-br from-[#0f0f23] via-[#1a1a3e] to-[#0f0f23]">
+    <div class="anim-fade text-center">
+     <div class="mb-6">
+      <svg width="120" height="120" viewbox="0 0 120 120" class="mx-auto">
+       <defs>
+        <lineargradient id="lg1" x1="0%" y1="100%" x2="100%" y2="0%">
+         <stop offset="0%" style="stop-color:#10b981" />
+         <stop offset="100%" style="stop-color:#34d399" />
+        </lineargradient>
+       </defs> <rect x="25" y="35" width="50" height="55" rx="6" fill="none" stroke="url(#lg1)" stroke-width="3" /> <rect x="35" y="25" width="30" height="15" rx="4" fill="none" stroke="url(#lg1)" stroke-width="3" /> <polyline points="55,75 70,55 80,62 100,30" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round" />
+      </svg>
+     </div>
+     <h1 class="text-5xl font-black text-emerald-400 mb-2">متجر سهم</h1>
+     <p class="text-gray-400 text-lg mb-8">ابنِ إمبراطوريتك التجارية! 🚀</p><button id="btn-start" onclick="startGame()" class="btn-action glow-green bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xl px-12 py-4 rounded-2xl">🚀 ابدأ اللعب</button> <button id="btn-continue" onclick="continueGame()" class="btn-action hidden mt-4 bg-gray-700 hover:bg-gray-600 text-white font-bold px-8 py-3 rounded-xl block mx-auto">▶ متابعة اللعب</button>
+    </div>
+   </div>
+   <div id="game-screen" class="hidden h-full w-full flex flex-col">
+    <header class="bg-[#161630] border-b border-gray-800 px-4 py-3 flex items-center justify-between flex-shrink-0">
+     <div class="flex items-center gap-3">
+      <svg width="32" height="32" viewbox="0 0 120 120"><rect x="25" y="35" width="50" height="55" rx="6" fill="none" stroke="#10b981" stroke-width="4" /><polyline points="55,75 70,55 80,62 100,30" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round" />
+      </svg><span id="top-store-name" class="font-bold text-emerald-400 text-lg">متجر سهم</span>
+     </div>
+     <div class="flex items-center gap-4 text-sm">
+      <span id="top-day" class="text-gray-400">📅 اليوم 1</span> <span id="top-level" class="bg-emerald-900 text-emerald-300 px-3 py-1 rounded-full text-xs font-bold">مستوى 1</span> <span id="top-cash" class="text-yellow-400 font-bold">💰 10,000</span> <span id="top-capacity" class="text-blue-400 font-bold text-xs">👥 0/0</span> <button id="sound-toggle" class="sound-toggle ml-2 text-xl cursor-pointer hover:scale-125 transition-all" onclick="toggleSound()" title="تشغيل/إيقاف الصوت">🔊</button>
+     </div>
+    </header>
+    <nav class="bg-[#161630] flex border-b border-gray-800 px-2 flex-shrink-0 overflow-x-auto">
+     <button onclick="switchTab('dashboard')" class="tab-btn tab-active px-4 py-3 text-sm font-bold whitespace-nowrap" data-tab="dashboard">📊 لوحة التحكم</button> <button onclick="switchTab('store')" class="tab-btn px-4 py-3 text-sm font-bold text-gray-500 whitespace-nowrap" data-tab="store">🏪 المتجر</button> <button onclick="switchTab('market')" class="tab-btn px-4 py-3 text-sm font-bold text-gray-500 whitespace-nowrap" data-tab="market">📦 السوق</button> <button onclick="switchTab('staff')" class="tab-btn px-4 py-3 text-sm font-bold text-gray-500 whitespace-nowrap" data-tab="staff">👥 الموظفين</button> <button onclick="switchTab('upgrades')" class="tab-btn px-4 py-3 text-sm font-bold text-gray-500 whitespace-nowrap relative" data-tab="upgrades">⭐ الترقيات <span id="upgrade-badge" class="notification-badge hidden">!</span></button> <button onclick="switchTab('advertising')" class="tab-btn px-4 py-3 text-sm font-bold text-gray-500 whitespace-nowrap relative" data-tab="advertising">📢 إعلانات <span id="ad-badge" class="notification-badge hidden">!</span></button> <button onclick="switchTab('challenges')" class="tab-btn px-4 py-3 text-sm font-bold text-gray-500 whitespace-nowrap relative" data-tab="challenges">🎯 التحديات <span id="challenge-badge" class="notification-badge hidden">!</span></button> <button onclick="switchTab('advisor')" class="tab-btn px-4 py-3 text-sm font-bold text-gray-500 whitespace-nowrap" data-tab="advisor">🤖 المستشار</button> <button onclick="switchTab('events')" class="tab-btn px-4 py-3 text-sm font-bold text-gray-500 whitespace-nowrap" data-tab="events">⚡ الأحداث</button> <button onclick="switchTab('commercial')" class="tab-btn px-4 py-3 text-sm font-bold text-gray-500 whitespace-nowrap relative" data-tab="commercial">🏢 السوق التجاري <span id="commercial-badge" class="notification-badge hidden">!</span></button> <button onclick="switchTab('bills')" class="tab-btn px-4 py-3 text-sm font-bold text-gray-500 whitespace-nowrap relative" data-tab="bills">📋 الفواتير <span id="bills-badge" class="notification-badge hidden">!</span></button> <button onclick="switchTab('simulator')" class="tab-btn px-4 py-3 text-sm font-bold text-gray-500 whitespace-nowrap" data-tab="simulator">🖥️ محاكاة الكاشير</button>
+    </nav>
+    <div id="tab-content" class="flex-1 overflow-y-auto p-4">
+     <div id="tab-dashboard" class="tab-panel space-y-4">
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+       <div class="bg-[#1a1a3e] rounded-xl p-4 card-hover anim-fade">
+        <div class="text-gray-500 text-xs mb-1">
+         💰 النقد
+        </div>
+        <div id="kpi-cash" class="text-2xl font-black text-yellow-400">
+         10,000
+        </div>
+        <div class="text-gray-600 text-xs">
+         ر.س
+        </div>
+       </div>
+       <div class="bg-[#1a1a3e] rounded-xl p-4 card-hover anim-fade" style="animation-delay:0.1s">
+        <div class="text-gray-500 text-xs mb-1">
+         📈 الأرباح
+        </div>
+        <div id="kpi-profit" class="text-2xl font-black text-emerald-400">
+         0
+        </div>
+        <div class="text-gray-600 text-xs">
+         ر.س
+        </div>
+       </div>
+       <div class="bg-[#1a1a3e] rounded-xl p-4 card-hover anim-fade" style="animation-delay:0.2s">
+        <div class="text-gray-500 text-xs mb-1">
+         ⭐ السمعة
+        </div>
+        <div id="kpi-rep" class="text-2xl font-black text-blue-400">
+         50
+        </div>
+        <div class="text-gray-600 text-xs">
+         / 100
+        </div>
+       </div>
+       <div class="bg-[#1a1a3e] rounded-xl p-4 card-hover anim-fade" style="animation-delay:0.3s">
+        <div class="text-gray-500 text-xs mb-1">
+         😊 الرضا
+        </div>
+        <div id="kpi-sat" class="text-2xl font-black text-purple-400">
+         70
+        </div>
+        <div class="text-gray-600 text-xs">
+         %
+        </div>
+       </div>
+       <div class="bg-[#1a1a3e] rounded-xl p-4 card-hover anim-fade" style="animation-delay:0.4s">
+        <div class="text-gray-500 text-xs mb-1">
+         👥 الموظفين
+        </div>
+        <div id="kpi-emp" class="text-2xl font-black text-cyan-400">
+         0
+        </div>
+        <div class="text-gray-600 text-xs">
+         موظف
+        </div>
+       </div>
+      </div>
+      <div class="bg-[#1a1a3e] rounded-xl p-4 anim-fade" style="animation-delay:0.5s">
+       <div class="flex justify-between items-center mb-2">
+        <span class="text-sm font-bold">تقدم المستوى</span> <span id="level-label" class="text-emerald-400 text-sm font-bold">متجر صغير</span>
+       </div>
+       <div class="w-full bg-gray-800 rounded-full h-3">
+        <div id="level-bar" class="bg-gradient-to-r from-emerald-600 to-emerald-400 h-3 rounded-full progress-bar" style="width:5%"></div>
+       </div>
+       <div class="flex justify-between text-xs text-gray-600 mt-1">
+        <span>مستوى 1</span><span>مستوى 5 - القابضة</span>
+       </div>
+      </div>
+      <div class="bg-[#1a1a3e] rounded-xl p-4 anim-fade" style="animation-delay:0.6s">
+       <div class="text-sm font-bold mb-3">
+        📊 أداء آخر 7 أيام
+       </div>
+       <div id="mini-chart" class="flex items-end gap-1 h-24"></div>
+      </div><button onclick="nextDay()" class="btn-action w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold py-4 rounded-xl text-lg">⏭ انتقل لليوم التالي</button>
+     </div>
+     <div id="tab-store" class="tab-panel hidden space-y-4">
+      <div class="text-lg font-bold mb-4 flex items-center gap-2">
+       🏪 منتجات متجرك <span id="section-count" class="bg-emerald-600 px-3 py-1 rounded-full text-sm text-white">0</span>
+      </div>
+      <div id="store-sections-container"></div>
+      <div class="bg-[#1a1a3e] rounded-xl p-4 text-center text-gray-500" id="store-empty">
+       <p>لا توجد منتجات بعد. اذهب للسوق لشراء منتجات!</p>
+      </div>
+     </div>
+     <div id="tab-market" class="tab-panel hidden space-y-3">
+      <div class="text-lg font-bold mb-4">
+       📦 سوق الجملة - اشترِ المنتجات
+      </div>
+      <div id="market-sections-container"></div>
+     </div>
+     <div id="tab-staff" class="tab-panel hidden space-y-4">
+      <div class="text-lg font-bold mb-4">
+       👥 إدارة الموظفين المتقدمة
+      </div>
+      <div class="bg-blue-900 bg-opacity-30 border border-blue-500 rounded-xl p-4 mb-4">
+       <p class="text-sm text-gray-300">💡 كل موظف يزيد الإنتاجية بنسبة 15%. الموظفون القسميون يخصصون خدماتهم للأقسام!</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-1 gap-3">
+       <div id="general-staff" class="bg-[#1a1a3e] rounded-xl p-4">
+        <div class="text-lg font-bold mb-3 flex items-center gap-2">
+         <span>👤 الموظفون العامون</span><span id="general-count" class="bg-emerald-600 text-white px-2 py-1 rounded text-sm">0</span>
+        </div>
+        <div class="text-sm text-gray-400 mb-3">
+         تكلفة: <strong id="general-cost" class="text-red-400">0</strong> ر.س/يوم | مضاعف: <strong id="general-mult" class="text-emerald-400">0%</strong>
+        </div><button onclick="hireGeneralStaff()" class="btn-action w-full bg-blue-700 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-bold">➕ توظيف عام (150 ر.س)</button> <button onclick="fireGeneralStaff()" class="btn-action w-full bg-red-700 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-bold mt-2">➖ تسريح</button>
+       </div>
+      </div>
+      <div class="text-lg font-bold mt-6 mb-4">
+       🎯 موظفو الأقسام المتخصصون
+      </div>
+      <div id="department-staff-container" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+     </div>
+     <div id="tab-upgrades" class="tab-panel hidden space-y-4">
+      <div class="text-lg font-bold mb-4">
+       ⭐ ترقيات المتجر
+      </div>
+      <div class="bg-yellow-900 bg-opacity-30 border border-yellow-500 rounded-xl p-4 mb-4">
+       <p class="text-sm text-gray-300">💰 استثمر أموالك لترقية متجرك وزيادة الإنتاجية والسعة!</p>
+      </div>
+      <div id="upgrades-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+     </div>
+     <div id="tab-advertising" class="tab-panel hidden space-y-4">
+      <div class="text-lg font-bold mb-4">
+       📢 حملات الإعلانات
+      </div>
+      <div class="bg-blue-900 bg-opacity-30 border border-blue-500 rounded-xl p-4 mb-4">
+       <p class="text-sm text-gray-300">💡 الإعلانات تزيد السمعة والطلب على المنتجات! 🎁</p>
+      </div>
+      <div id="ads-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+     </div>
+     <div id="tab-challenges" class="tab-panel hidden space-y-4">
+      <div class="text-lg font-bold mb-4 flex items-center gap-2">
+       🎯 التحديات اليومية <span id="active-challenges-count" class="bg-emerald-600 px-3 py-1 rounded-full text-sm text-white">0</span>
+      </div>
+      <div id="challenges-list" class="grid grid-cols-1 md:grid-cols-2 gap-4 anim-fade"></div>
+      <div id="challenges-empty" class="bg-[#1a1a3e] rounded-xl p-6 text-center text-gray-500">
+       🎊 أكملت كل التحديات!
+      </div>
+     </div>
+     <div id="tab-advisor" class="tab-panel hidden space-y-4">
+      <div class="flex items-center gap-3 mb-4">
+       <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center text-2xl">
+        🤖
+       </div>
+       <div>
+        <div class="font-bold text-lg text-emerald-400">
+         مستشار سهم الذكي
+        </div>
+        <div class="text-gray-500 text-xs">
+         مستشار أعمالك الشخصي
+        </div>
+       </div>
+      </div>
+      <div id="advisor-messages" class="space-y-3 max-h-96 overflow-y-auto"></div><button onclick="getAdvice()" class="btn-action w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold py-3 rounded-xl">💡 اطلب نصيحة جديدة</button>
+     </div>
+     <div id="tab-events" class="tab-panel hidden space-y-4">
+      <div class="text-lg font-bold mb-4">
+       ⚡ الأحداث والتحديات
+      </div>
+      <div id="events-list" class="space-y-3"></div>
+      <div id="events-empty" class="bg-[#1a1a3e] rounded-xl p-6 text-center text-gray-500">
+       لا توجد أحداث حالياً. استمر باللعب!
+      </div>
+     </div>
+     <div id="tab-commercial" class="tab-panel hidden space-y-4">
+      <div class="text-lg font-bold mb-4">
+       🏢 السوق التجاري - طور متجرك
+      </div>
+      <div class="bg-blue-900 bg-opacity-30 border border-blue-500 rounded-xl p-4 mb-4">
+       <div class="text-sm text-gray-300">
+        <div>
+         📍 <strong id="store-level-display">حجم متجرك</strong>
+        </div>
+        <div>
+         🚗 <strong id="parking-display">مواقف سيارات</strong>
+        </div>
+        <div>
+         📦 الموارد المتاحة
+        </div>
+       </div>
+      </div>
+      <div class="grid grid-cols-1 gap-4 mb-6">
+       <div class="commercial-card anim-slide">
+        <div class="text-3xl mb-2">
+         🏪
+        </div>
+        <div class="font-bold text-lg mb-1">
+         توسيع المتجر
+        </div>
+        <div class="text-sm text-gray-400 mb-2">
+         زيادة مساحة البيع والتخزين
+        </div>
+        <div id="store-size-info" class="text-xs text-gray-500 mb-3">
+         الحجم الحالي: صغير
+        </div><button onclick="expandStore()" class="btn-action w-full bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded font-bold"> 🔨 توسيع بـ 5,000 ر.س </button>
+       </div>
+       <div class="commercial-card anim-slide">
+        <div class="text-3xl mb-2">
+         🚗
+        </div>
+        <div class="font-bold text-lg mb-1">
+         مواقف سيارات
+        </div>
+        <div class="text-sm text-gray-400 mb-2">
+         كل موقف يزيد الجاذبية ويوفر راحة للعملاء
+        </div>
+        <div id="parking-info" class="text-xs text-gray-500 mb-3">
+         المواقف الحالية: 0
+        </div><button onclick="addParking()" class="btn-action w-full bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded font-bold"> 🅿️ إضافة موقف (800 ر.س) </button>
+       </div>
+      </div>
+      <div class="text-lg font-bold mb-4">
+       📦 موارد البيع والتشغيل
+      </div>
+      <div id="resources-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+     </div>
+     <div id="tab-bills" class="tab-panel hidden space-y-4">
+      <div class="text-lg font-bold mb-4">
+       📋 الفواتير والاشتراكات الشهرية
+      </div>
+      <div class="grid grid-cols-3 gap-3 mb-4">
+       <div class="bg-red-900 bg-opacity-30 rounded-xl p-3 text-center">
+        <div class="text-xs text-gray-400">
+         المستحقة
+        </div>
+        <div id="bills-due" class="text-2xl font-black text-red-400">
+         0
+        </div>
+       </div>
+       <div class="bg-yellow-900 bg-opacity-30 rounded-xl p-3 text-center">
+        <div class="text-xs text-gray-400">
+         المدفوعة
+        </div>
+        <div id="bills-paid" class="text-2xl font-black text-yellow-400">
+         0
+        </div>
+       </div>
+       <div class="bg-emerald-900 bg-opacity-30 rounded-xl p-3 text-center">
+        <div class="text-xs text-gray-400">
+         المتبقي
+        </div>
+        <div id="bills-remaining" class="text-2xl font-black text-emerald-400">
+         0
+        </div>
+       </div>
+      </div>
+      <div class="bg-red-900 bg-opacity-20 border border-red-500 rounded-xl p-4 mb-4">
+       <p class="text-sm text-gray-300">⚠️ الفواتير تُستحق كل يوم 15 من الشهر. إذا لم تدفع ستؤثر على سمعتك!</p>
+      </div>
+      <div id="bills-list" class="space-y-3"></div>
+     </div>
+     <div id="tab-simulator" class="tab-panel hidden space-y-4">
+      <div class="text-lg font-bold mb-4">
+       🖥️ محاكاة الكاشير - تعلم عملية البيع
+      </div>
+      <div class="bg-blue-900 bg-opacity-30 border border-blue-500 rounded-xl p-4 mb-4">
+       <p class="text-sm text-gray-300">💡 محاكي الكاشير يساعدك على تعلم عملية البيع والفواتير! اختر المنتجات وادفع</p>
+      </div>
+      <div class="grid grid-cols-3 gap-2 mb-4">
+       <div class="bg-[#1a1a3e] rounded-lg p-3 text-center">
+        <div class="text-xs text-gray-500">
+         المنتجات
+        </div>
+        <div id="sim-item-count" class="text-2xl font-bold text-emerald-400">
+         0
+        </div>
+       </div>
+       <div class="bg-[#1a1a3e] rounded-lg p-3 text-center">
+        <div class="text-xs text-gray-500">
+         الإجمالي
+        </div>
+        <div id="sim-total" class="text-2xl font-bold text-yellow-400">
+         0
+        </div>
+       </div>
+       <div class="bg-[#1a1a3e] rounded-lg p-3 text-center">
+        <div class="text-xs text-gray-500">
+         الضريبة
+        </div>
+        <div id="sim-tax" class="text-2xl font-bold text-blue-400">
+         0
+        </div>
+       </div>
+      </div>
+      <div class="bg-[#1a1a3e] rounded-xl p-4 mb-4">
+       <div class="text-sm font-bold mb-3">
+        🛒 اختر المنتجات:
+       </div>
+       <div class="grid grid-cols-2 md:grid-cols-3 gap-2" id="simulator-products"></div>
+      </div>
+      <div class="space-y-3 mb-4">
+       <div class="bg-[#1a1a3e] rounded-xl p-3">
+        <div class="text-sm font-bold mb-2">
+         📦 سلتك:
+        </div>
+        <div id="sim-cart" class="text-sm text-gray-400 max-h-40 overflow-y-auto">
+         <p class="text-center">السلة فارغة</p>
+        </div>
+       </div>
+      </div>
+      <div class="grid grid-cols-2 gap-2"><button onclick="simulatorClearCart()" class="btn-action w-full bg-red-700 hover:bg-red-600 text-white px-4 py-2 rounded font-bold">🗑️ مسح السلة</button> <button onclick="simulatorCheckout()" class="btn-action w-full bg-emerald-700 hover:bg-emerald-600 text-white px-4 py-2 rounded font-bold">💳 الدفع</button>
+      </div>
+      <div id="simulator-receipt" class="bg-[#1a1a3e] rounded-xl p-4 hidden mt-4 font-mono text-xs">
+       <div class="text-center font-bold mb-3 text-emerald-400">
+        ✅ الفاتورة
+       </div>
+       <div id="receipt-content"></div><button onclick="simulatorNewTransaction()" class="btn-action w-full mt-4 bg-blue-700 hover:bg-blue-600 text-white px-4 py-2 rounded font-bold">🆕 عملية جديدة</button>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div id="toast-container" class="fixed top-4 left-4 right-4 z-50 flex flex-col items-center gap-2 pointer-events-none"></div>
+   <div id="effects-container" class="fixed inset-0 pointer-events-none"></div>
+  </div>
+  <script>
+let AUDIO = {enabled:true,context:null};
+function initAudio(){if(!AUDIO.context){try{const AudioContext=window.AudioContext||window.webkitAudioContext;AUDIO.context=new AudioContext();}catch(e){}}}
+function playTone(freq,duration,type='sine'){if(!AUDIO.enabled||!AUDIO.context)return;try{const ctx=AUDIO.context;const osc=ctx.createOscillator();const gain=ctx.createGain();osc.connect(gain);gain.connect(ctx.destination);osc.type=type;osc.frequency.value=freq;gain.gain.setValueAtTime(0.3,ctx.currentTime);gain.gain.exponentialRampToValueAtTime(0.01,ctx.currentTime+duration);osc.start(ctx.currentTime);osc.stop(ctx.currentTime+duration);}catch(e){}}
+function playCoinSound(){playTone(800,0.1,'sine');setTimeout(()=>playTone(1200,0.1,'sine'),50);}
+function playSuccessSound(){playTone(523,0.1);setTimeout(()=>playTone(659,0.1),100);setTimeout(()=>playTone(784,0.2),200);}
+function playErrorSound(){playTone(300,0.15);setTimeout(()=>playTone(200,0.15),100);}
+function playNotificationSound(){playTone(700,0.08);setTimeout(()=>playTone(900,0.08),80);}
+function toggleSound(){AUDIO.enabled=!AUDIO.enabled;const btn=document.getElementById('sound-toggle');btn.textContent=AUDIO.enabled?'🔊':'🔇';showToast(AUDIO.enabled?'✅ الصوت مفعّل':'🔇 الصوت معطّل');}
+
+const LEVELS=[{name:'متجر صغير',target:0},{name:'بقالة ناجحة',target:20000},{name:'سوبرماركت',target:80000},{name:'سلسلة فروع',target:250000},{name:'سهم القابضة',target:1000000}];
+
+const PRODUCT_CATEGORIES=[
+{id:'basics',name:'الأساسيات',emoji:'🥘',color:'#059669'},
+{id:'beverages',name:'المشروبات',emoji:'🥤',color:'#3b82f6'},
+{id:'dairy',name:'الألبان والجبن',emoji:'🧈',color:'#f59e0b'},
+{id:'meat',name:'اللحوم والدواجن',emoji:'🍖',color:'#ef4444'},
+{id:'fruits',name:'الفواكه والخضار',emoji:'🥕',color:'#10b981'},
+{id:'sweets',name:'الحلويات والشوكولاتة',emoji:'🍫',color:'#ec4899'},
+{id:'snacks',name:'الوجبات الخفيفة',emoji:'🥒',color:'#f97316'},
+{id:'frozen',name:'المجمدات',emoji:'🧊',color:'#06b6d4'},
+{id:'local',name:'المنتجات المحلية',emoji:'🌴',color:'#8b5cf6'},
+{id:'organic',name:'العضوية والطبيعية',emoji:'🌿',color:'#14b8a6'},
+{id:'premium',name:'المنتجات الفاخرة',emoji:'👑',color:'#d97706'},
+{id:'baby',name:'منتجات الأطفال',emoji:'👶',color:'#ec4899'},
+{id:'health',name:'الصحة والعناية',emoji:'💊',color:'#8b5cf6'},
+{id:'cosmetics',name:'مستحضرات التجميل',emoji:'💄',color:'#f472b6'},
+];
+
+const PRODUCTS=[
+{id:'rice',name:'أرز',emoji:'🍚',cost:8,basePrice:15,category:'basics',popularity:0.95},
+{id:'flour',name:'دقيق',emoji:'🌾',cost:5,basePrice:11,category:'basics',popularity:0.9},
+{id:'salt',name:'ملح',emoji:'🧂',cost:2,basePrice:5,category:'basics',popularity:0.85},
+{id:'sugar',name:'سكر',emoji:'🍬',cost:5,basePrice:10,category:'basics',popularity:0.8},
+{id:'oil',name:'زيت طبخ',emoji:'🫒',cost:12,basePrice:22,category:'basics',popularity:0.95},
+{id:'water',name:'ماء معدنية',emoji:'💧',cost:2,basePrice:5,category:'beverages',popularity:1.0},
+{id:'tea',name:'شاي',emoji:'🍵',cost:10,basePrice:20,category:'beverages',popularity:0.85},
+{id:'coffee',name:'قهوة',emoji:'☕',cost:25,basePrice:50,category:'beverages',popularity:0.9},
+{id:'juice',name:'عصير طازج',emoji:'🧃',cost:7,basePrice:14,category:'beverages',popularity:0.85},
+{id:'energy_drink',name:'مشروب طاقة',emoji:'⚡',cost:6,basePrice:12,category:'beverages',popularity:0.75},
+{id:'milk_drink',name:'حليب مخفوق',emoji:'🥛',cost:8,basePrice:16,category:'beverages',popularity:0.8},
+{id:'milk',name:'حليب طازج',emoji:'🥛',cost:6,basePrice:12,category:'dairy',popularity:0.9},
+{id:'cheese',name:'جبن',emoji:'🧀',cost:15,basePrice:30,category:'dairy',popularity:0.85},
+{id:'yogurt',name:'زبادي',emoji:'🥛',cost:5,basePrice:10,category:'dairy',popularity:0.88},
+{id:'butter',name:'زبدة',emoji:'🧈',cost:12,basePrice:24,category:'dairy',popularity:0.8},
+{id:'cream',name:'كريمة',emoji:'🥄',cost:8,basePrice:16,category:'dairy',popularity:0.75},
+{id:'chicken',name:'دجاج طازج',emoji:'🍗',cost:18,basePrice:35,category:'meat',popularity:0.9},
+{id:'beef',name:'لحم بقري',emoji:'🥩',cost:30,basePrice:60,category:'meat',popularity:0.85},
+{id:'lamb',name:'لحم ضأن',emoji:'🍖',cost:28,basePrice:55,category:'meat',popularity:0.8},
+{id:'fish',name:'أسماك',emoji:'🐟',cost:20,basePrice:40,category:'meat',popularity:0.82},
+{id:'sausage',name:'نقانق',emoji:'🌭',cost:12,basePrice:24,category:'meat',popularity:0.78},
+{id:'tomato',name:'طماطم',emoji:'🍅',cost:3,basePrice:7,category:'fruits',popularity:0.92},
+{id:'onion',name:'بصل',emoji:'🧅',cost:2,basePrice:5,category:'fruits',popularity:0.88},
+{id:'garlic',name:'ثوم',emoji:'🧄',cost:4,basePrice:9,category:'fruits',popularity:0.85},
+{id:'carrot',name:'جزر',emoji:'🥕',cost:3,basePrice:7,category:'fruits',popularity:0.8},
+{id:'apple',name:'تفاح',emoji:'🍎',cost:5,basePrice:11,category:'fruits',popularity:0.86},
+{id:'banana',name:'موز',emoji:'🍌',cost:4,basePrice:9,category:'fruits',popularity:0.88},
+{id:'orange',name:'برتقال',emoji:'🍊',cost:6,basePrice:12,category:'fruits',popularity:0.87},
+{id:'lettuce',name:'خس',emoji:'🥬',cost:3,basePrice:7,category:'fruits',popularity:0.78},
+{id:'chocolate',name:'شوكولاتة',emoji:'🍫',cost:8,basePrice:16,category:'sweets',popularity:0.85},
+{id:'candy',name:'حلوى',emoji:'🍭',cost:3,basePrice:7,category:'sweets',popularity:0.8},
+{id:'pastry',name:'معجنات',emoji:'🥐',cost:7,basePrice:15,category:'sweets',popularity:0.82},
+{id:'honey',name:'عسل',emoji:'🍯',cost:20,basePrice:40,category:'sweets',popularity:0.88},
+{id:'jam',name:'مربى',emoji:'🍓',cost:6,basePrice:13,category:'sweets',popularity:0.75},
+{id:'chips',name:'شيبس',emoji:'🥔',cost:4,basePrice:9,category:'snacks',popularity:0.8},
+{id:'popcorn',name:'فشار',emoji:'🍿',cost:3,basePrice:7,category:'snacks',popularity:0.75},
+{id:'nuts',name:'المكسرات',emoji:'🥜',cost:15,basePrice:30,category:'snacks',popularity:0.85},
+{id:'seeds',name:'بذور',emoji:'🌻',cost:8,basePrice:16,category:'snacks',popularity:0.72},
+{id:'crackers',name:'بسكويت',emoji:'🍘',cost:5,basePrice:10,category:'snacks',popularity:0.78},
+{id:'icecream',name:'آيس كريم',emoji:'🍦',cost:10,basePrice:20,category:'frozen',popularity:0.8},
+{id:'frozen_veg',name:'خضار مجمدة',emoji:'🥦',cost:5,basePrice:11,category:'frozen',popularity:0.7},
+{id:'frozen_chicken',name:'دجاج مجمد',emoji:'❄️',cost:15,basePrice:30,category:'frozen',popularity:0.75},
+{id:'dates',name:'تمر الجودة',emoji:'🌴',cost:20,basePrice:40,category:'local',popularity:0.95},
+{id:'bread_local',name:'خبز محلي',emoji:'🍞',cost:3,basePrice:7,category:'local',popularity:0.92},
+{id:'herbs',name:'أعشاب محلية',emoji:'🌿',cost:5,basePrice:12,category:'local',popularity:0.8},
+{id:'organic_milk',name:'حليب عضوي',emoji:'🌿',cost:10,basePrice:20,category:'organic',popularity:0.85},
+{id:'organic_honey',name:'عسل عضوي',emoji:'🍯',cost:25,basePrice:50,category:'organic',popularity:0.88},
+{id:'organic_veg',name:'خضار عضوية',emoji:'🥬',cost:8,basePrice:16,category:'organic',popularity:0.82},
+{id:'premium_coffee',name:'قهوة فاخرة',emoji:'☕',cost:50,basePrice:100,category:'premium',popularity:0.8},
+{id:'premium_chocolate',name:'شوكولاتة فاخرة',emoji:'🍫',cost:20,basePrice:40,category:'premium',popularity:0.85},
+{id:'baby_formula',name:'حليب الأطفال',emoji:'👶',cost:30,basePrice:60,category:'baby',popularity:0.9},
+{id:'baby_food',name:'طعام الأطفال',emoji:'🥣',cost:15,basePrice:30,category:'baby',popularity:0.88},
+{id:'vitamins',name:'الفيتامينات',emoji:'💊',cost:25,basePrice:50,category:'health',popularity:0.82},
+{id:'soap',name:'الصابون',emoji:'🧼',cost:5,basePrice:12,category:'cosmetics',popularity:0.8},
+{id:'shampoo',name:'الشامبو',emoji:'🧴',cost:15,basePrice:30,category:'cosmetics',popularity:0.85},
+{id:'toothpaste',name:'معجون الأسنان',emoji:'🪥',cost:8,basePrice:18,category:'cosmetics',popularity:0.9},
+{id:'deodorant',name:'مزيل العرق',emoji:'🧴',cost:12,basePrice:25,category:'cosmetics',popularity:0.8},
+{id:'perfume',name:'العطور',emoji:'💐',cost:40,basePrice:80,category:'premium',popularity:0.82},
+{id:'tissues',name:'المناديل',emoji:'🧻',cost:3,basePrice:8,category:'basics',popularity:0.88},
+{id:'napkins',name:'مناديل المائدة',emoji:'🧻',cost:4,basePrice:10,category:'basics',popularity:0.85},
+{id:'garbage_bags',name:'أكياس القمامة',emoji:'♻️',cost:5,basePrice:12,category:'basics',popularity:0.8},
+{id:'foil',name:'ورق الألومنيوم',emoji:'🥄',cost:8,basePrice:18,category:'basics',popularity:0.78},
+{id:'wrap',name:'النايلون الشفاف',emoji:'📦',cost:6,basePrice:14,category:'basics',popularity:0.75},
+{id:'detergent',name:'مسحوق الغسيل',emoji:'🧼',cost:20,basePrice:40,category:'basics',popularity:0.9},
+{id:'fabric_softener',name:'منعم الأقمشة',emoji:'💧',cost:15,basePrice:30,category:'basics',popularity:0.82},
+{id:'dish_soap',name:'سائل غسل الأطباق',emoji:'🧼',cost:10,basePrice:22,category:'basics',popularity:0.88},
+{id:'disinfectant',name:'معقم المنزل',emoji:'🧴',cost:12,basePrice:26,category:'basics',popularity:0.85},
+{id:'air_freshener',name:'منعش الهواء',emoji:'🌸',cost:8,basePrice:18,category:'basics',popularity:0.8},
+{id:'batteries',name:'البطاريات',emoji:'🔋',cost:5,basePrice:12,category:'basics',popularity:0.85},
+{id:'lighter',name:'ولاعات',emoji:'🔥',cost:4,basePrice:10,category:'basics',popularity:0.78},
+{id:'matches',name:'أعواد الثقاب',emoji:'🔥',cost:2,basePrice:5,category:'basics',popularity:0.7},
+{id:'gum',name:'علكة',emoji:'🍬',cost:3,basePrice:7,category:'sweets',popularity:0.75},
+{id:'mints',name:'حلويات النعناع',emoji:'🌿',cost:4,basePrice:10,category:'sweets',popularity:0.72},
+{id:'lollipop',name:'حلوى عصا',emoji:'🍭',cost:2,basePrice:5,category:'sweets',popularity:0.68},
+{id:'cake',name:'كيك',emoji:'🎂',cost:15,basePrice:30,category:'sweets',popularity:0.8},
+{id:'cookies',name:'كوكيز',emoji:'🍪',cost:8,basePrice:16,category:'sweets',popularity:0.82},
+{id:'wafer',name:'ويفر',emoji:'🍪',cost:6,basePrice:13,category:'sweets',popularity:0.78},
+{id:'cereal',name:'حبوب الإفطار',emoji:'🥣',cost:12,basePrice:25,category:'basics',popularity:0.8},
+{id:'oats',name:'الشوفان',emoji:'🌾',cost:8,basePrice:16,category:'basics',popularity:0.78},
+{id:'cornflakes',name:'كورن فليكس',emoji:'🌽',cost:10,basePrice:20,category:'basics',popularity:0.75},
+{id:'pancake_mix',name:'خليط الفطائر',emoji:'🥞',cost:10,basePrice:20,category:'basics',popularity:0.72},
+{id:'honey_jar',name:'عسل في برطمان',emoji:'🍯',cost:25,basePrice:50,category:'sweets',popularity:0.9},
+{id:'peanut_butter',name:'زبدة الفول السوداني',emoji:'🥜',cost:15,basePrice:30,category:'basics',popularity:0.8},
+{id:'tahini',name:'الطحينة',emoji:'🥄',cost:18,basePrice:35,category:'basics',popularity:0.85},
+{id:'olives',name:'الزيتون',emoji:'🫒',cost:12,basePrice:25,category:'basics',popularity:0.85},
+{id:'pickles',name:'المخللات',emoji:'🥒',cost:8,basePrice:16,category:'basics',popularity:0.78},
+{id:'canned_tuna',name:'تونة معلبة',emoji:'🐟',cost:10,basePrice:20,category:'basics',popularity:0.85},
+{id:'canned_chicken',name:'دجاج معلب',emoji:'🍗',cost:12,basePrice:24,category:'basics',popularity:0.82},
+{id:'beans',name:'الفاصوليا المعلبة',emoji:'🫘',cost:6,basePrice:12,category:'basics',popularity:0.8},
+{id:'corn_can',name:'الذرة المعلبة',emoji:'🌽',cost:5,basePrice:11,category:'basics',popularity:0.78},
+{id:'peas_can',name:'البازلاء المعلبة',emoji:'🟢',cost:5,basePrice:10,category:'basics',popularity:0.75},
+{id:'tomato_sauce',name:'صلصة الطماطم',emoji:'🍅',cost:6,basePrice:13,category:'basics',popularity:0.88},
+{id:'pasta_sauce',name:'صلصة المعكرونة',emoji:'🍝',cost:8,basePrice:16,category:'basics',popularity:0.85},
+{id:'ketchup',name:'كاتشب',emoji:'🍅',cost:7,basePrice:14,category:'basics',popularity:0.8},
+{id:'mayonnaise',name:'مايونيز',emoji:'🥄',cost:10,basePrice:20,category:'basics',popularity:0.78},
+{id:'mustard',name:'خردل',emoji:'🟡',cost:6,basePrice:13,category:'basics',popularity:0.72},
+{id:'olive_oil_bottle',name:'زيت الزيتون',emoji:'🫒',cost:30,basePrice:60,category:'basics',popularity:0.88},
+{id:'soy_sauce',name:'صلصة الصويا',emoji:'🤎',cost:12,basePrice:25,category:'basics',popularity:0.75},
+{id:'vinegar',name:'الخل',emoji:'🍶',cost:8,basePrice:16,category:'basics',popularity:0.8},
+{id:'lemon_juice',name:'عصير الليمون',emoji:'🍋',cost:10,basePrice:20,category:'beverages',popularity:0.82},
+{id:'pasta',name:'معكرونة',emoji:'🍝',cost:6,basePrice:13,category:'basics',popularity:0.88},
+{id:'rice_noodles',name:'نودلز أرز',emoji:'🍜',cost:5,basePrice:11,category:'basics',popularity:0.8},
+{id:'instant_noodles',name:'نودلز فورية',emoji:'🍜',cost:3,basePrice:7,category:'basics',popularity:0.78},
+{id:'cous_cous',name:'الكسكس',emoji:'🥘',cost:8,basePrice:16,category:'basics',popularity:0.82},
+{id:'lentils',name:'العدس',emoji:'🟠',cost:10,basePrice:20,category:'basics',popularity:0.85},
+{id:'chickpeas',name:'الحمص',emoji:'🟤',cost:8,basePrice:16,category:'basics',popularity:0.82},
+{id:'almonds',name:'اللوز',emoji:'🌰',cost:35,basePrice:70,category:'snacks',popularity:0.88},
+{id:'walnuts',name:'الجوز',emoji:'🪜',cost:40,basePrice:80,category:'snacks',popularity:0.85},
+{id:'cashews',name:'الكاجو',emoji:'🥜',cost:38,basePrice:75,category:'snacks',popularity:0.86},
+{id:'pistachios',name:'الفستق',emoji:'🟢',cost:45,basePrice:90,category:'snacks',popularity:0.9},
+{id:'pumpkin_seeds',name:'بذور اليقطين',emoji:'🎃',cost:15,basePrice:30,category:'snacks',popularity:0.78},
+{id:'sunflower_seeds',name:'بذور دوار الشمس',emoji:'🌻',cost:12,basePrice:24,category:'snacks',popularity:0.8},
+{id:'dried_fruits',name:'الفواكه المجففة',emoji:'🍌',cost:25,basePrice:50,category:'snacks',popularity:0.85},
+{id:'fig',name:'التين',emoji:'🟣',cost:20,basePrice:40,category:'fruits',popularity:0.8},
+{id:'raisin',name:'الزبيب',emoji:'🟤',cost:18,basePrice:36,category:'fruits',popularity:0.85},
+{id:'lemon_fresh',name:'ليمون طازج',emoji:'🍋',cost:4,basePrice:9,category:'fruits',popularity:0.85},
+{id:'lime',name:'الليمة الحلوة',emoji:'🟢',cost:5,basePrice:10,category:'fruits',popularity:0.82},
+{id:'mango',name:'مانجو',emoji:'🥭',cost:8,basePrice:16,category:'fruits',popularity:0.87},
+{id:'pineapple',name:'أناناس',emoji:'🍍',cost:12,basePrice:25,category:'fruits',popularity:0.85},
+{id:'grapes',name:'عنب',emoji:'🍇',cost:15,basePrice:30,category:'fruits',popularity:0.86},
+{id:'strawberry',name:'الفراولة',emoji:'🍓',cost:12,basePrice:25,category:'fruits',popularity:0.87},
+{id:'blueberry',name:'التوت الأزرق',emoji:'🫐',cost:18,basePrice:35,category:'fruits',popularity:0.84},
+{id:'papaya',name:'بابايا',emoji:'🧡',cost:10,basePrice:20,category:'fruits',popularity:0.78},
+{id:'guava',name:'جوافة',emoji:'🟢',cost:8,basePrice:16,category:'fruits',popularity:0.8},
+{id:'avocado',name:'أفوكادو',emoji:'🥑',cost:12,basePrice:25,category:'fruits',popularity:0.82},
+{id:'coconut',name:'جوز الهند',emoji:'🥥',cost:10,basePrice:20,category:'fruits',popularity:0.78},
+{id:'pomegranate',name:'رمان',emoji:'🍎',cost:12,basePrice:25,category:'fruits',popularity:0.85},
+
+
+const AD_CAMPAIGNS=[
+{id:'social_media',title:'📱 وسائل التواصل',desc:'إعلانات على انستقرام وتيك توك',cost:500,reputationGain:8,reachBoost:1.3},
+{id:'billboard',title:'🎨 لوحات إعلانية',desc:'لوحات في الشوارع الرئيسية',cost:1000,reputationGain:15,reachBoost:1.5},
+{id:'influencer',title:'⭐ تسويق مؤثرات',desc:'دعم من المؤثرين المشهورين',cost:2000,reputationGain:25,reachBoost:2},
+{id:'flyer',title:'📄 منشورات ورقية',desc:'توزيع نشرات إعلانية',cost:300,reputationGain:5,reachBoost:1.15},
+{id:'tv_ad',title:'📺 إعلان تلفزيوني',desc:'إعلان على القنوات المحلية',cost:3000,reputationGain:40,reachBoost:2.5},
+{id:'radio',title:'📻 إعلان إذاعي',desc:'إذاعة محطات راديو',cost:400,reputationGain:10,reachBoost:1.25},
+];
+
+const STORE_UPGRADES=[
+{id:'storage1',name:'توسيع المخزن 1',emoji:'📦',cost:2000,effect:'storage',amount:50,benefit:'زيادة السعة +50 وحدة'},
+{id:'storage2',name:'توسيع المخزن 2',emoji:'📦📦',cost:5000,effect:'storage',amount:100,benefit:'زيادة السعة +100 وحدة'},
+{id:'shelf_system',name:'نظام الأرفف الذكية',emoji:'📚',cost:3000,effect:'sales_boost',amount:1.15,benefit:'تزيد المبيعات 15%'},
+{id:'ac_system',name:'نظام التبريد المتقدم',emoji:'❄️',cost:4000,effect:'quality',amount:1.2,benefit:'جودة المنتجات +20%'},
+{id:'checkout_upgrade',name:'صناديق الدفع الذكية',emoji:'💳',cost:5000,effect:'checkout_speed',amount:1.25,benefit:'سرعة البيع +25%'},
+{id:'lighting_system',name:'إضاءة LED محترفة',emoji:'💡',cost:3500,effect:'ambiance',amount:1.1,benefit:'جاذبية +10%'},
+{id:'staff_room',name:'غرفة الموظفين',emoji:'🏢',cost:6000,effect:'staff_capacity',amount:10,benefit:'سعة موظفين +10'},
+{id:'security',name:'نظام الأمان',emoji:'🚨',cost:4500,effect:'security',amount:1.0,benefit:'حماية من السرقة'},
+{id:'online_platform',name:'متجر إلكتروني',emoji:'💻',cost:8000,effect:'online_sales',amount:1.5,benefit:'مبيعات إضافية +50%'},
+{id:'express_delivery',name:'خدمة التوصيل السريع',emoji:'🚚',cost:7000,effect:'delivery',amount:1.3,benefit:'رضا العملاء +30%'},
+];
+
+const COMMERCIAL_RESOURCES=[
+{id:'bags',name:'أكياس البلاستيك',emoji:'🛍️',costPerUnit:50,costPerDay:200,benefit:'تحسين تجربة التسوق +5%'},
+{id:'cashier',name:'أجهزة الكاشير',emoji:'🖥️',costPerUnit:2000,costPerDay:300,benefit:'تسريع البيع +10%'},
+{id:'scale',name:'موازين إلكترونية',emoji:'⚖️',costPerUnit:1500,costPerDay:150,benefit:'دقة البيع +8%'},
+{id:'drawer',name:'درج نقدي ذكي',emoji:'💰',costPerUnit:800,costPerDay:100,benefit:'أمان النقد +10%'},
+{id:'cart',name:'عربات التسوق',emoji:'🛒',costPerUnit:300,costPerDay:50,benefit:'راحة العملاء +6%'},
+{id:'cooler',name:'ثلاجات عرض',emoji:'❄️',costPerUnit:3000,costPerDay:400,benefit:'الحفاظ على المنتجات +15%'},
+{id:'shelves',name:'رفوف عرض احترافية',emoji:'📚',costPerUnit:600,costPerDay:100,benefit:'استقطاب العملاء +8%'},
+{id:'mirrors',name:'مرايا أمان',emoji:'🪞',costPerUnit:250,costPerDay:30,benefit:'الأمان من السرقة +12%'},
+{id:'signage',name:'لافتات إضاءة LED',emoji:'📍',costPerUnit:500,costPerDay:80,benefit:'جاذبية العرض +7%'},
+{id:'trash_bins',name:'سلات القمامة الذكية',emoji:'🗑️',costPerUnit:200,costPerDay:40,benefit:'نظافة المتجر +6%'},
+{id:'misting_system',name:'نظام الرش للخضار',emoji:'💦',costPerUnit:1200,costPerDay:150,benefit:'حفاظ على الخضار +10%'},
+{id:'price_tags',name:'لافتات الأسعار الرقمية',emoji:'🏷️',costPerUnit:300,costPerDay:50,benefit:'كفاءة تغيير الأسعار +15%'},
+{id:'bag_dispenser',name:'موزع الأكياس التلقائي',emoji:'📦',costPerUnit:400,costPerDay:60,benefit:'سرعة الخدمة +8%'},
+{id:'loyalty_system',name:'نظام البطاقات الذهبية',emoji:'💳',costPerUnit:1500,costPerDay:200,benefit:'ولاء العملاء +20%'},
+{id:'cctv',name:'كاميرات مراقبة 4K',emoji:'📹',costPerUnit:800,costPerDay:100,benefit:'أمان شامل +25%'},
+{id:'music_system',name:'نظام الموسيقى المحيطة',emoji:'🎵',costPerUnit:600,costPerDay:80,benefit:'تجربة التسوق +12%'},
+];
+
+const BILLS=[
+{id:'electricity',name:'فاتورة الكهرباء',emoji:'⚡',monthlyAmount:2000,dueDay:15,isPaid:false},
+{id:'water',name:'فاتورة المياه',emoji:'💧',monthlyAmount:800,dueDay:15,isPaid:false},
+{id:'rent',name:'إيجار المحل',emoji:'🏢',monthlyAmount:5000,dueDay:1,isPaid:false},
+{id:'internet',name:'الإنترنت والاتصالات',emoji:'📡',monthlyAmount:500,dueDay:10,isPaid:false},
+{id:'insurance',name:'التأمين التجاري',emoji:'🛡️',monthlyAmount:1500,dueDay:20,isPaid:false},
+{id:'maintenance',name:'الصيانة والنظافة',emoji:'🧹',monthlyAmount:1000,dueDay:25,isPaid:false},
+{id:'security',name:'خدمات الحراسة',emoji:'👮',monthlyAmount:2500,dueDay:5,isPaid:false},
+{id:'staff_bonus',name:'مكافآت الموظفين',emoji:'🎁',monthlyAmount:3000,dueDay:30,isPaid:false},
+];
+
+const CHALLENGES=[
+{id:'first_profit',title:'💰 أول ربح',desc:'حقق أول ربح موجب!',reward:500,difficulty:'easy',check:(g)=>g.history.length>0&&g.history[g.history.length-1]>0},
+{id:'millionaire',title:'💎 المليونير',desc:'وصل إجمالي أرباحك إلى مليون ريال!',reward:5000,difficulty:'hard',check:(g)=>g.totalProfit>=1000000},
+{id:'team_builder',title:'👥 فريق قوي',desc:'وظف 20 موظف!',reward:2500,difficulty:'medium',check:(g)=>g.totalEmployees>=20},
+{id:'empire_builder',title:'🏛️ بناء إمبراطورية',desc:'وصل مستواك إلى القابضة!',reward:10000,difficulty:'hard',check:(g)=>g.level>=4},
+];
+
+const EVENTS=[
+{id:'ramadan',title:'🌙 موسم رمضان',desc:'الطلب على التمر +50%!',effect:'demand_boost',targets:['dates','tea','coffee','juice'],mult:1.5,days:30},
+{id:'competitor',title:'🏪 منافس جديد',desc:'المبيعات تنخفض 20%',effect:'sales_drop',mult:0.8,days:7},
+{id:'blackfriday',title:'🖤 الجمعة البيضاء',desc:'الطلب يتضاعف!',effect:'demand_boost',targets:'all',mult:2,days:3},
+{id:'economic_crisis',title:'💥 أزمة اقتصادية',desc:'المبيعات -40%',effect:'sales_drop',mult:0.6,days:5},
+];
+
+let G={cash:10000,day:1,level:0,reputation:50,satisfaction:70,totalProfit:0,totalEmployees:0,generalStaff:0,departmentStaff:{},inventory:{},prices:{},history:[],activeEvents:[],advisorMsgs:[],savedId:null,soundEnabled:true,musicEnabled:true,challenges:[],completedChallenges:[],activeCampaigns:[],adsRun:{},upgrades:[],purchasedUpgrades:{},stats:{totalSold:0,totalSpent:0,daysPlayed:0,eventsCaught:0,profitStreakDays:0},storeSize:1,parkingSpaces:0,storeLevel:1,resources:{},bills:{},billsPaid:{},billsStatus:{}};
+
+let currentData=[];
+
+const dataHandler={onDataChanged(data){currentData=data;if(data.length>0){const save=data[data.length-1];if(!G.savedId){G.savedId=save.__backendId;G.cash=save.cash||10000;G.day=save.day||1;G.level=save.level||0;G.reputation=save.reputation||50;G.satisfaction=save.satisfaction||70;G.totalProfit=save.total_profit||0;G.totalEmployees=save.employees||0;G.storeSize=save.store_size||1;G.parkingSpaces=save.parking_spaces||0;G.storeLevel=save.store_level||1;try{G.inventory=JSON.parse(save.inventory_json||'{}');}catch(e){G.inventory={};}try{G.departmentStaff=JSON.parse(save.department_employees_json||'{}');}catch(e){G.departmentStaff={};}try{G.purchasedUpgrades=JSON.parse(save.store_upgrades_json||'{}');}catch(e){G.purchasedUpgrades={};}try{G.resources=JSON.parse(save.resources_json||'{}');}catch(e){G.resources={};}try{G.bills=JSON.parse(save.bills_json||'{}');}catch(e){G.bills={};}}}const btn=document.getElementById('btn-continue');if(btn)btn.classList.remove('hidden');updateAllUI();}};
+
+async function saveGame(){const record={type:'save',cash:G.cash,day:G.day,level:G.level,reputation:G.reputation,total_profit:G.totalProfit,inventory_json:JSON.stringify(G.inventory),employees:G.totalEmployees,satisfaction:G.satisfaction,sound_enabled:G.soundEnabled,music_enabled:G.musicEnabled,ads_json:JSON.stringify(G.adsRun),department_employees_json:JSON.stringify(G.departmentStaff),store_upgrades_json:JSON.stringify(G.purchasedUpgrades),store_size:G.storeSize,parking_spaces:G.parkingSpaces,store_level:G.storeLevel,resources_json:JSON.stringify(G.resources),bills_json:JSON.stringify(G.bills),timestamp:new Date().toISOString()};if(G.savedId&&currentData.length>0){const existing=currentData.find(d=>d.__backendId===G.savedId);if(existing){const updated={...existing,...record};await window.dataSdk.update(updated);return;}}if(currentData.length>=999){showToast('⚠️ حد التخزين!','red');return;}await window.dataSdk.create(record);}
+
+const defaultConfig={store_name:'متجر سهم',difficulty_setting:'عادي',background_color:'#0f0f23',surface_color:'#1a1a3e',text_color:'#f3f4f6',primary_color:'#10b981',accent_color:'#eab308',font_family:'Tajawal',font_size:16};
+
+function applyConfig(config){const bg=config.background_color||defaultConfig.background_color;const sf=config.surface_color||defaultConfig.surface_color;const tx=config.text_color||defaultConfig.text_color;const ff=config.font_family||defaultConfig.font_family;const fs=config.font_size||defaultConfig.font_size;const diff=config.difficulty_setting||'عادي';document.body.style.background=bg;document.body.style.color=tx;document.body.style.fontFamily=`${ff}, Tajawal, sans-serif`;document.body.style.fontSize=fs+'px';const name=config.store_name||defaultConfig.store_name;const topName=document.getElementById('top-store-name');if(topName)topName.textContent=name;G.difficulty=diff;}
+
+window.elementSdk.init({defaultConfig,onConfigChange:async(config)=>applyConfig(config),mapToCapabilities:(config)=>({recolorables:[{get:()=>config.background_color||defaultConfig.background_color,set:(v)=>{config.background_color=v;window.elementSdk.setConfig({background_color:v})}},{get:()=>config.surface_color||defaultConfig.surface_color,set:(v)=>{config.surface_color=v;window.elementSdk.setConfig({surface_color:v})}},{get:()=>config.text_color||defaultConfig.text_color,set:(v)=>{config.text_color=v;window.elementSdk.setConfig({text_color:v})}},{get:()=>config.primary_color||defaultConfig.primary_color,set:(v)=>{config.primary_color=v;window.elementSdk.setConfig({primary_color:v})}},{get:()=>config.accent_color||defaultConfig.accent_color,set:(v)=>{config.accent_color=v;window.elementSdk.setConfig({accent_color:v})}}],borderables:[],fontEditable:{get:()=>config.font_family||defaultConfig.font_family,set:(v)=>{config.font_family=v;window.elementSdk.setConfig({font_family:v})}},fontSizeable:{get:()=>config.font_size||defaultConfig.font_size,set:(v)=>{config.font_size=v;window.elementSdk.setConfig({font_size:v})}}}),mapToEditPanelValues:(config)=>new Map([['store_name',config.store_name||defaultConfig.store_name],['difficulty_setting',config.difficulty_setting||defaultConfig.difficulty_setting]])});
+
+window.dataSdk.init(dataHandler);
+initAudio();
+
+function showToast(msg,color='emerald'){playCoinSound();const c=document.getElementById('toast-container');const t=document.createElement('div');t.className=`toast-msg bg-${color}-600 text-white px-6 py-3 rounded-xl font-bold text-sm shadow-lg pointer-events-auto`;t.textContent=msg;c.appendChild(t);setTimeout(()=>t.remove(),3000);}
+
+function switchTab(tab){playTone(600,0.05);document.querySelectorAll('.tab-btn').forEach(b=>{b.classList.remove('tab-active');b.classList.add('text-gray-500')});document.querySelectorAll('.tab-panel').forEach(p=>p.classList.add('hidden'));const btn=document.querySelector(`[data-tab="${tab}"]`);if(btn){btn.classList.add('tab-active');btn.classList.remove('text-gray-500')}const panel=document.getElementById('tab-'+tab);if(panel)panel.classList.remove('hidden');}
+
+function fmt(n){return Math.round(n).toLocaleString('ar-SA')}
+
+function startGame(){initAudio();playSuccessSound();G={cash:10000,day:1,level:0,reputation:50,satisfaction:70,totalProfit:0,totalEmployees:0,generalStaff:0,departmentStaff:{},inventory:{},prices:{},history:[],activeEvents:[],advisorMsgs:[],savedId:null,soundEnabled:true,musicEnabled:true,challenges:[],completedChallenges:[],activeCampaigns:[],adsRun:{},upgrades:STORE_UPGRADES.map(u=>({...u})),purchasedUpgrades:{},stats:{totalSold:0,totalSpent:0,daysPlayed:0,eventsCaught:0},storeSize:1,parkingSpaces:0,storeLevel:1,resources:{},bills:{},billsPaid:{},billsStatus:{}};G.challenges=CHALLENGES.map(c=>({...c,completed:false}));PRODUCT_CATEGORIES.forEach(cat=>{G.departmentStaff[cat.id]=0;});COMMERCIAL_RESOURCES.forEach(res=>{G.resources[res.id]=0;});BILLS.forEach(bill=>{G.bills[bill.id]={...bill};G.billsPaid[bill.id]=false;});showGameScreen();addAdvisorMsg('مرحباً! أنا مستشار سهم 🤖 الآن لديك نظام موظفين متقدم وترقيات متجر وسوق تجاري وفواتير! ابدأ بتوظيف موظفين عامين أو قسميين 👥');updateAllUI();saveGame();}
+
+function continueGame(){initAudio();playSuccessSound();showGameScreen();addAdvisorMsg('مرحباً بعودتك! 🤖 استمر في بناء امبراطوريتك!');updateAllUI();}
+
+function showGameScreen(){document.getElementById('splash-screen').classList.add('hidden');document.getElementById('game-screen').classList.remove('hidden');}
+
+function updateAllUI(){let lvl=0;for(let i=LEVELS.length-1;i>=0;i--){if(G.totalProfit>=LEVELS[i].target){lvl=i;break;}}G.level=lvl;document.getElementById('top-day').textContent=`📅 اليوم ${G.day}`;document.getElementById('top-level').textContent=`مستوى ${lvl+1}`;document.getElementById('top-cash').textContent=`💰 ${fmt(G.cash)}`;document.getElementById('top-capacity').textContent=`👥 ${G.totalEmployees}/${Math.max(5,G.generalStaff*2+Object.values(G.departmentStaff).reduce((a,b)=>a+b,0))}`;document.getElementById('kpi-cash').textContent=fmt(G.cash);document.getElementById('kpi-profit').textContent=fmt(G.totalProfit);document.getElementById('kpi-rep').textContent=G.reputation;document.getElementById('kpi-sat').textContent=G.satisfaction;document.getElementById('kpi-emp').textContent=G.totalEmployees;document.getElementById('level-label').textContent=LEVELS[lvl].name;const nextTarget=lvl<LEVELS.length-1?LEVELS[lvl+1].target:LEVELS[lvl].target;const prevTarget=LEVELS[lvl].target;const pct=nextTarget>prevTarget?Math.min(100,((G.totalProfit-prevTarget)/(nextTarget-prevTarget))*100):100;document.getElementById('level-bar').style.width=pct+'%';renderMiniChart();renderStoreByCategory();renderMarketByCategory();renderDepartmentStaff();renderUpgrades();renderAdvertising();renderEvents();renderAdvisor();updateChallenges();renderCommercial();renderBills();}
+
+function renderMiniChart(){const c=document.getElementById('mini-chart');const last7=G.history.slice(-7);if(last7.length===0){c.innerHTML='<div class="text-gray-600 text-sm w-full text-center">ابدأ اللعب</div>';return;}const max=Math.max(...last7.map(h=>Math.abs(h)),1);c.innerHTML=last7.map((v,i)=>{const h=Math.max(8,(Math.abs(v)/max)*88);const color=v>=0?'bg-emerald-500':'bg-red-500';return `<div class="flex-1 flex flex-col items-center justify-end gap-1"><div class="text-xs ${v>=0?'text-emerald-400':'text-red-400'}">${fmt(v)}</div><div class="${color} rounded-t w-full" style="height:${h}%"></div></div>`;}).join('');}
+
+function renderStoreByCategory(){const c=document.getElementById('store-sections-container');const empty=document.getElementById('store-empty');const items=Object.entries(G.inventory).filter(([k,v])=>v.qty>0);if(items.length===0){c.innerHTML='';empty.classList.remove('hidden');return;}empty.classList.add('hidden');const grouped={};items.forEach(([id,item])=>{const prod=PRODUCTS.find(p=>p.id===id);if(!grouped[prod.category])grouped[prod.category]=[];grouped[prod.category].push({id,item,prod});});const sections=PRODUCT_CATEGORIES.filter(cat=>grouped[cat.id]);document.getElementById('section-count').textContent=sections.length;c.innerHTML=sections.map((cat,i)=>{const items=grouped[cat.id]||[];return `<div class="category-section anim-slide" style="animation-delay:${i*0.05}s"><div class="category-header" style="border-right-color:${cat.color};background:rgba(${parseInt(cat.color.slice(1,3),16)},${parseInt(cat.color.slice(3,5),16)},${parseInt(cat.color.slice(5,7),16)},0.1)" onclick="toggleCategory(this)"><span class="text-2xl">${cat.emoji}</span><span class="font-bold text-lg flex-1">${cat.name}</span><span class="category-toggle">▼</span></div><div class="product-grid">${items.map(({id,item,prod})=>{const price=G.prices[id]||prod.basePrice;const margin=((price-prod.cost)/prod.cost*100).toFixed(0);return `<div class="product-card ${item.qty<5?'low-stock':''} anim-fade"><div class="text-3xl mb-1">${prod.emoji}</div><div class="font-bold text-xs">${prod.name}</div><div class="text-xs text-gray-400">الكمية: ${item.qty}</div><div class="text-xs text-yellow-400">هامش: ${margin}%</div><div class="flex gap-1 mt-1"><button onclick="changePrice('${id}',-1)" class="btn-action bg-red-900 flex-1 h-6 rounded text-xs">-</button><span class="text-xs font-bold flex-1 text-center">${price}</span><button onclick="changePrice('${id}',1)" class="btn-action bg-emerald-900 flex-1 h-6 rounded text-xs">+</button></div></div>`;}).join('')}</div></div>`;}).join('');}
+
+function toggleCategory(el){el.querySelector('.category-toggle').classList.toggle('collapsed');const grid=el.nextElementSibling;grid.style.display=grid.style.display==='none'?'grid':'none';}
+
+function renderMarketByCategory(){const c=document.getElementById('market-sections-container');c.innerHTML=PRODUCT_CATEGORIES.map((cat,i)=>{const prods=PRODUCTS.filter(p=>p.category===cat.id);return `<div class="category-section anim-slide" style="animation-delay:${i*0.05}s"><div class="category-header" style="border-right-color:${cat.color};background:rgba(${parseInt(cat.color.slice(1,3),16)},${parseInt(cat.color.slice(3,5),16)},${parseInt(cat.color.slice(5,7),16)},0.1)" onclick="toggleCategory(this)"><span class="text-2xl">${cat.emoji}</span><span class="font-bold text-lg flex-1">${cat.name}</span><span class="category-toggle">▼</span></div><div class="product-grid">${prods.map(p=>{const inStock=G.inventory[p.id]?.qty||0;return `<div class="product-card anim-fade"><div class="text-2xl mb-1">${p.emoji} ${p.name}</div><div class="text-xs text-yellow-400">جملة: ${p.cost}</div><div class="text-xs text-emerald-300">لديك: ${inStock}</div><div class="flex gap-1 mt-1"><button onclick="buyProduct('${p.id}',10)" class="btn-action bg-emerald-700 flex-1 py-1 rounded text-xs">10</button><button onclick="buyProduct('${p.id}',50)" class="btn-action bg-blue-700 flex-1 py-1 rounded text-xs">50</button></div></div>`;}).join('')}</div></div>`;}).join('');}
+
+function renderDepartmentStaff(){const c=document.getElementById('department-staff-container');c.innerHTML=PRODUCT_CATEGORIES.map(cat=>{const staff=G.departmentStaff[cat.id]||0;const capacity=Math.max(3,Math.floor(Object.values(G.inventory||{}).filter(item=>PRODUCTS.find(p=>p.id===item.id)?.category===cat.id).reduce((a,b)=>a+b.qty,0)/30));const isFull=staff>=capacity;const cost=staff*200;return `<div class="department-card anim-slide" style="border-color:${cat.color}"><div class="flex items-center gap-2 mb-2"><span class="text-2xl">${cat.emoji}</span><span class="font-bold flex-1">${cat.name}</span><span class="bg-blue-600 text-white px-2 py-1 rounded text-xs">${staff}/${capacity}</span></div><div class="text-xs text-gray-400 mb-2">التكلفة: ${fmt(cost)} ر.س/يوم | مضاعف: +${staff*10}%</div><div class="capacity-bar mb-2"><div class="capacity-fill ${isFull?'warning-low':''}" style="width:${Math.min(100,staff/capacity*100)}%"></div></div><div class="flex gap-1"><button onclick="hireDepartmentStaff('${cat.id}')" class="btn-action flex-1 bg-emerald-700 hover:bg-emerald-600 text-white px-3 py-1 rounded text-xs font-bold">➕ توظيف</button><button onclick="fireDepartmentStaff('${cat.id}')" class="btn-action flex-1 bg-red-700 hover:bg-red-600 text-white px-3 py-1 rounded text-xs font-bold">➖ تسريح</button></div>${isFull?'<div class="text-yellow-500 text-xs mt-2">⚠️ السعة ممتلئة!شتري منتجات أكثر لزيادة السعة</div>':''}</div>`;}).join('');}
+
+function renderUpgrades(){const c=document.getElementById('upgrades-list');c.innerHTML=G.upgrades.map((up,i)=>{const isOwned=G.purchasedUpgrades[up.id];return `<div class="upgrade-card anim-slide ${isOwned?'unlocked':''}" style="animation-delay:${i*0.08}s"><div class="flex justify-between items-start mb-2"><div class="flex-1"><div class="font-bold text-lg">${up.emoji} ${up.name}</div><div class="text-sm text-gray-400 mt-1">${up.benefit}</div></div>${isOwned?'<span class="text-2xl">✅</span>':''}</div>${!isOwned?`<div class="upgrade-reward">💰 ${fmt(up.cost)} ر.س</div><button onclick="buyUpgrade('${up.id}')" class="btn-action w-full mt-2 bg-yellow-700 hover:bg-yellow-600 text-white px-4 py-2 rounded font-bold text-sm">شراء الآن</button>`:'<div class="text-emerald-400 font-bold text-sm">تم تطبيق الترقية ✨</div>'}</div>`;}).join('');}
+
+function renderAdvertising(){const c=document.getElementById('ads-list');c.innerHTML=AD_CAMPAIGNS.map((ad,i)=>{const isActive=G.activeCampaigns.includes(ad.id);return `<div class="ad-campaign anim-slide" style="animation-delay:${i*0.1}s"><div class="font-bold text-lg">${ad.title}</div><div class="text-gray-300 text-sm mt-1">${ad.desc}</div><div class="flex items-center gap-2 mt-2 text-xs"><span>📊 سمعة +${ad.reputationGain}</span><span>📈 وصول x${ad.reachBoost}</span></div><div class="flex justify-between items-center mt-3"><div class="ad-reward">💰 ${fmt(ad.cost)}</div><button onclick="runAd('${ad.id}')" class="btn-action ${isActive?'bg-green-700 hover:bg-green-600':'bg-purple-700 hover:bg-purple-600'} text-white px-4 py-1 rounded text-xs font-bold">${isActive?'✓ نشط':'📢 شغّل'}</button></div></div>`;}).join('');}
+
+function renderEvents(){const c=document.getElementById('events-list');const empty=document.getElementById('events-empty');if(G.activeEvents.length===0){c.innerHTML='';empty.classList.remove('hidden');return;}empty.classList.add('hidden');c.innerHTML=G.activeEvents.map(e=>`<div class="bg-[#1a1a3e] rounded-xl p-4 border-r-4 border-yellow-500 anim-slide"><div class="font-bold text-lg">${e.title}</div><div class="text-gray-400 text-sm mt-1">${e.desc}</div><div class="text-yellow-500 text-xs mt-2">⏰ متبقي: ${e.daysLeft} أيام</div></div>`).join('');}
+
+function renderAdvisor(){const c=document.getElementById('advisor-messages');c.innerHTML=G.advisorMsgs.slice(-10).map(m=>`<div class="bg-[#1a1a3e] rounded-xl p-3 anim-slide text-sm">${m}</div>`).join('');c.scrollTop=c.scrollHeight;}
+
+function renderCommercial(){const c=document.getElementById('resources-container');c.innerHTML=COMMERCIAL_RESOURCES.map((res,i)=>{const owned=G.resources[res.id]||0;const dailyCost=owned*(res.costPerDay||0);return `<div class="resource-card anim-slide" style="animation-delay:${i*0.08}s"><div class="text-3xl mb-2">${res.emoji}</div><div class="font-bold text-lg">${res.name}</div><div class="text-sm text-gray-400 mb-2">${res.benefit}</div><div class="text-xs text-gray-500 mb-2">🔹 مملوك: ${owned} | يومي: ${fmt(dailyCost)}</div><button onclick="buyResource('${res.id}')" class="btn-action w-full bg-purple-700 hover:bg-purple-600 text-white px-3 py-2 rounded font-bold text-xs">🛒 شراء (${fmt(res.costPerUnit)} ر.س)</button></div>`;}).join('');const storeSize=G.storeSize;const sizeNames=['صغير','متوسط','كبير','ضخم','عملاق'];document.getElementById('store-size-info').textContent=`الحجم الحالي: ${sizeNames[Math.min(storeSize-1,4)]}`;document.getElementById('parking-info').textContent=`المواقف الحالية: ${G.parkingSpaces}`;}
+
+function renderBills(){const c=document.getElementById('bills-list');const billsData=Object.values(G.bills);const totalDue=billsData.reduce((sum,bill)=>sum+bill.monthlyAmount,0);const totalPaid=Object.values(G.billsPaid||{}).filter(p=>p).length*(totalDue/billsData.length);const remaining=totalDue-totalPaid;document.getElementById('bills-due').textContent=fmt(totalDue);document.getElementById('bills-paid').textContent=fmt(totalPaid);document.getElementById('bills-remaining').textContent=fmt(remaining);c.innerHTML=billsData.map((bill,i)=>{const isPaid=G.billsPaid[bill.id]||false;const daysUntilDue=Math.max(0,(bill.dueDay||15)-G.day);const isOverdue=daysUntilDue===0&&!isPaid;return `<div class="bill-card ${isPaid?'paid':''} anim-slide" style="animation-delay:${i*0.1}s"><div class="flex justify-between items-start mb-2"><div class="flex-1"><div class="font-bold text-lg">${bill.emoji} ${bill.name}</div><div class="text-sm text-gray-400">${isPaid?'✅ تم الدفع':'⏳ معلق'}</div></div><div class="text-right"><div class="text-2xl font-black ${isPaid?'text-emerald-400':'text-red-400'}">${fmt(bill.monthlyAmount)}</div></div></div><div class="flex justify-between text-xs text-gray-500 mb-3"><span>الموعد: ${bill.dueDay}/${G.day>bill.dueDay?'الشهر الجديد':''}</span>${isOverdue?'<span class="text-red-400 font-bold">⚠️ متأخر!</span>':''}</div>${!isPaid?`<button onclick="payBill('${bill.id}')" class="btn-action w-full ${isOverdue?'bg-red-700 hover:bg-red-600':'bg-emerald-700 hover:bg-emerald-600'} text-white px-3 py-2 rounded font-bold text-xs">💳 دفع الآن</button>`:'<div class="text-emerald-400 font-bold text-sm text-center">تم السداد ✨</div>'}</div>`;}).join('');}
+
+function addAdvisorMsg(msg){G.advisorMsgs.push(msg);renderAdvisor();}
+
+function updateChallenges(){if(!G.challenges)return;G.challenges.forEach(ch=>{if(ch.completed)return;let isComplete=false;if(ch.check)isComplete=ch.check(G);if(isComplete){ch.completed=true;completeChallenge(ch);}});renderChallenges();}
+
+function completeChallenge(challenge){playSuccessSound();G.cash+=challenge.reward;G.completedChallenges.push(challenge.id);showToast(`🎉 ${challenge.title}! +${fmt(challenge.reward)} ر.س`,'emerald');addAdvisorMsg(`🏆 تهانينا! أكملت "${challenge.title}" وحصلت على ${fmt(challenge.reward)} ر.س!`);}
+
+function renderChallenges(){const c=document.getElementById('challenges-list');const empty=document.getElementById('challenges-empty');const active=G.challenges.filter(ch=>!ch.completed);document.getElementById('active-challenges-count').textContent=active.length;if(active.length===0){c.innerHTML='';empty.classList.remove('hidden');return;}empty.classList.add('hidden');c.innerHTML=active.map((ch,i)=>{const prog=getChallengeProg(ch);const diffClass=`difficulty-${ch.difficulty}`;return `<div class="challenge-card anim-slide" style="animation-delay:${i*0.1}s"><div class="flex justify-between items-start mb-2"><div class="flex-1"><div class="font-bold text-lg">${ch.title}</div><div class="text-gray-400 text-sm mt-1">${ch.desc}</div></div><span class="difficulty-badge ${diffClass}">${ch.difficulty==='easy'?'⭐':ch.difficulty==='medium'?'⭐⭐':'⭐⭐⭐'}</span></div><div class="mt-2"><div class="flex justify-between text-xs text-gray-400 mb-1"><span>التقدم</span><span>${prog}%</span></div><div class="w-full bg-gray-800 rounded h-2"><div class="bg-emerald-500" style="width:${prog}%"></div></div></div><div class="text-yellow-400 font-bold text-sm mt-2">🎁 ${fmt(ch.reward)} ر.س</div></div>`;}).join('');}
+
+function getChallengeProg(ch){if(ch.id==='first_profit')return G.history.length>0&&G.history[G.history.length-1]>0?100:0;if(ch.id==='millionaire')return Math.min(100,Math.floor((G.totalProfit/1000000)*100));if(ch.id==='team_builder')return Math.min(100,Math.floor((G.totalEmployees/20)*100));if(ch.id==='empire_builder')return Math.min(100,((G.level+1)/5)*100);return 0;}
+
+function buyProduct(id,qty){const p=PRODUCTS.find(x=>x.id===id);const total=p.cost*qty;if(G.cash<total){showToast('❌ لا يوجد نقد!','red');playErrorSound();return;}G.cash-=total;if(!G.inventory[id])G.inventory[id]={qty:0};G.inventory[id].qty+=qty;if(!G.prices[id])G.prices[id]=p.basePrice;G.stats.totalSpent+=total;playCoinSound();showToast(`✅ تم شراء ${qty} ${p.name}`);updateAllUI();saveGame();}
+
+function changePrice(id,dir){const p=PRODUCTS.find(x=>x.id===id);if(!G.prices[id])G.prices[id]=p.basePrice;G.prices[id]=Math.max(1,G.prices[id]+dir);playTone(500+(G.prices[id]-p.basePrice)*2,0.05);updateAllUI();}
+
+function hireGeneralStaff(){if(G.cash<150){showToast('❌ لا يوجد نقد!','red');playErrorSound();return;}G.cash-=150;G.generalStaff++;G.totalEmployees++;playSuccessSound();showToast('✅ تم توظيف موظف عام!');updateAllUI();saveGame();}
+
+function fireGeneralStaff(){if(G.generalStaff<=0){showToast('❌ لا يوجد موظفين!','red');playErrorSound();return;}G.generalStaff--;G.totalEmployees--;playErrorSound();showToast('تم تسريح موظف','red');updateAllUI();saveGame();}
+
+function hireDepartmentStaff(catId){const cat=PRODUCT_CATEGORIES.find(c=>c.id===catId);if(!cat){showToast('❌ قسم غير صحيح!','red');return;}if(G.cash<200){showToast('❌ لا يوجد نقد!','red');playErrorSound();return;}const currentStaff=G.departmentStaff[catId]||0;const inventory=Object.entries(G.inventory||{}).filter(([id,item])=>PRODUCTS.find(p=>p.id===id)?.category===catId).reduce((a,b)=>a+b[1].qty,0);const capacity=Math.max(3,Math.floor(inventory/30));if(currentStaff>=capacity){showToast(`❌ السعة ممتلئة! (${currentStaff}/${capacity}) اشترِ منتجات أكثر`,'red');playErrorSound();return;}G.cash-=200;G.departmentStaff[catId]=(G.departmentStaff[catId]||0)+1;G.totalEmployees++;playSuccessSound();showToast(`✅ تم توظيف متخصص في ${cat.name}!`);updateAllUI();saveGame();}
+
+function fireDepartmentStaff(catId){const staff=G.departmentStaff[catId]||0;if(staff<=0){showToast('❌ لا يوجد موظفين!','red');playErrorSound();return;}G.departmentStaff[catId]=staff-1;G.totalEmployees--;playErrorSound();showToast('تم تسريح متخصص','red');updateAllUI();saveGame();}
+
+function buyUpgrade(upgradeId){const upgrade=G.upgrades.find(u=>u.id===upgradeId);if(!upgrade){showToast('❌ ترقية غير صحيحة!','red');return;}if(G.purchasedUpgrades[upgradeId]){showToast('✅ لديك هذه الترقية بالفعل!','blue');return;}if(G.cash<upgrade.cost){showToast('❌ لا يوجد نقد كافٍ!','red');playErrorSound();return;}G.cash-=upgrade.cost;G.purchasedUpgrades[upgradeId]=true;playSuccessSound();showToast(`🎉 تم شراء: ${upgrade.name}!`,'emerald');addAdvisorMsg(`⭐ رائع! تم تطبيق "${upgrade.name}" على متجرك!`);updateAllUI();saveGame();}
+
+function runAd(adId){const ad=AD_CAMPAIGNS.find(a=>a.id===adId);if(!ad)return;if(G.cash<ad.cost){showToast('❌ لا يوجد نقد!','red');playErrorSound();return;}G.cash-=ad.cost;G.reputation=Math.min(100,G.reputation+ad.reputationGain);G.adsRun[adId]=(G.adsRun[adId]||0)+1;if(!G.activeCampaigns.includes(adId))G.activeCampaigns.push(adId);playSuccessSound();showToast(`📢 ${ad.title} شغّالة!`,'purple');addAdvisorMsg(`📢 حملة ${ad.title} قيد التشغيل!`);updateAllUI();saveGame();}
+
+function expandStore(){if(G.cash<5000){showToast('❌ لا يوجد نقد كافٍ!','red');playErrorSound();return;}G.cash-=5000;G.storeSize++;playSuccessSound();showToast('🏗️ تم توسيع المتجر!');addAdvisorMsg(`🏪 تهانينا! وسعت متجرك وأصبح أكبر حجماً!`);updateAllUI();saveGame();}
+
+function addParking(){if(G.cash<800){showToast('❌ لا يوجد نقد كافٍ!','red');playErrorSound();return;}G.cash-=800;G.parkingSpaces++;G.satisfaction=Math.min(100,G.satisfaction+5);playSuccessSound();showToast('🅿️ تم إضافة موقف سيارات!');addAdvisorMsg(`🚗 أضفت موقف سيارات! العملاء سيكونون أسعد!`);updateAllUI();saveGame();}
+
+function buyResource(resId){const res=COMMERCIAL_RESOURCES.find(r=>r.id===resId);if(!res){showToast('❌ مورد غير صحيح!','red');return;}if(G.cash<res.costPerUnit){showToast('❌ لا يوجد نقد كافٍ!','red');playErrorSound();return;}G.cash-=res.costPerUnit;G.resources[resId]=(G.resources[resId]||0)+1;playCoinSound();showToast(`✅ تم شراء: ${res.name}!`);addAdvisorMsg(`📦 اشتريت ${res.name}! هذا سيحسن تجربة التسوق!`);updateAllUI();saveGame();}
+
+function payBill(billId){const bill=G.bills[billId];if(!bill){showToast('❌ فاتورة غير صحيحة!','red');return;}if(G.billsPaid[billId]){showToast('✅ تم الدفع بالفعل!','blue');return;}if(G.cash<bill.monthlyAmount){showToast('❌ لا يوجد نقد كافٍ!','red');playErrorSound();return;}G.cash-=bill.monthlyAmount;G.billsPaid[billId]=true;playSuccessSound();showToast(`✅ تم دفع: ${bill.name}!`);addAdvisorMsg(`💳 دفعت فاتورة ${bill.name}. شكراً!`);updateAllUI();saveGame();}
+
+function nextDay(){G.day++;G.stats.daysPlayed++;let dailyProfit=0;let dailyCost=G.generalStaff*150;let totalSalesQty=0;Object.values(G.inventory).forEach(item=>item.qtySoldToday=0);const diffMult=G.difficulty==='سهل'?1.3:(G.difficulty==='صعب'?0.7:1);const empBonus=1+(G.totalEmployees*0.12);const deptBonus=1+Object.entries(G.departmentStaff).reduce((a,[catId,staff])=>{const inventory=Object.entries(G.inventory||{}).filter(([id])=>PRODUCTS.find(p=>p.id===id)?.category===catId).reduce((x,y)=>x+y[1].qty,0);return a+(inventory>0?staff*0.08:0);},0);let adBoost=1;G.activeCampaigns.forEach(adId=>{const ad=AD_CAMPAIGNS.find(a=>a.id===adId);if(ad)adBoost*=ad.reachBoost;});let eventSalesMult=1;G.activeEvents.forEach(e=>{if(e.effect==='sales_drop')eventSalesMult*=e.mult;});Object.entries(G.inventory).forEach(([id,item])=>{if(item.qty<=0)return;const p=PRODUCTS.find(x=>x.id===id);const price=G.prices[id]||p.basePrice;const priceRatio=Math.min(2,Math.max(0.5,p.basePrice/price));let demandBase=Math.floor(Math.random()*8)+4;let demandMult=1;G.activeEvents.forEach(e=>{if(e.effect==='demand_boost'&&(e.targets==='all'||e.targets?.includes(id)))demandMult*=e.mult;});const deptStaff=G.departmentStaff[p.category]||0;const deptBoostFactor=1+(deptStaff*0.15);const demand=Math.floor(demandBase*priceRatio*empBonus*deptBonus*deptBoostFactor*eventSalesMult*demandMult*p.popularity*diffMult*adBoost);const sold=Math.min(demand,item.qty);totalSalesQty+=sold;item.qty-=sold;item.qtySoldToday=(item.qtySoldToday||0)+sold;const revenue=sold*price;const costOfGoods=sold*p.cost;dailyProfit+=(revenue-costOfGoods);});G.stats.totalSold+=totalSalesQty;Object.entries(G.departmentStaff).forEach(([catId,staff])=>{dailyCost+=staff*200;});Object.entries(G.resources||{}).forEach(([resId,qty])=>{const res=COMMERCIAL_RESOURCES.find(r=>r.id===resId);if(res&&qty>0)dailyCost+=qty*(res.costPerDay||0);});G.activeEvents.forEach(e=>{if(e.effect==='cost')dailyCost+=e.amount;if(e.effect==='rep_loss')G.reputation=Math.max(0,G.reputation-e.amount);});Object.values(G.billsPaid||{}).forEach((paid)=>{if(!paid)dailyCost+=2000;});dailyProfit-=dailyCost;const finalProfit=dailyProfit*(1+G.totalEmployees*0.01);G.cash+=finalProfit;G.totalProfit+=Math.max(0,finalProfit);G.history.push(finalProfit);if(finalProfit>0){G.stats.profitStreakDays++;}else{G.stats.profitStreakDays=0;}const hasStock=Object.values(G.inventory).some(i=>i.qty>0);if(hasStock)G.satisfaction=Math.min(100,G.satisfaction+2);else G.satisfaction=Math.max(0,G.satisfaction-5);if(G.totalEmployees>0)G.satisfaction=Math.min(100,G.satisfaction+1);const lowInventoryPenalty=Object.entries(G.inventory).filter(([id,item])=>item.qty<3&&item.qty>0).length;G.satisfaction=Math.max(0,G.satisfaction-lowInventoryPenalty);G.reputation=Math.min(100,Math.max(0,G.reputation+(finalProfit>0?1:-2)));G.activeEvents=G.activeEvents.map(e=>({...e,daysLeft:e.daysLeft-1})).filter(e=>e.daysLeft>0);const eventProb=G.difficulty==='سهل'?0.15:(G.difficulty==='صعب'?0.35:0.25);if(Math.random()<eventProb&&G.activeEvents.length<3){const ev=EVENTS[Math.floor(Math.random()*EVENTS.length)];const daysLeft=ev.days||Math.floor(Math.random()*3)+2;G.activeEvents.push({...ev,daysLeft});G.stats.eventsCaught++;showToast(`⚡ ${ev.title}`,'yellow');playNotificationSound();addAdvisorMsg(`⚠️ ${ev.title}`);};Object.keys(G.billsPaid||{}).forEach(billId=>{G.billsPaid[billId]=false;});const msgProfit=finalProfit>=0?`📈 ربح: ${fmt(finalProfit)} ر.س`:`📉 خسارة: ${fmt(finalProfit)} ر.س`;showToast(msgProfit+` | مبيعات: ${totalSalesQty}`,'yellow',finalProfit>=0?'emerald':'red');let newLvl=0;for(let i=LEVELS.length-1;i>=0;i--){if(G.totalProfit>=LEVELS[i].target){newLvl=i;break;}}if(newLvl>G.level){showToast(`🎉 ترقية! أنت الآن: ${LEVELS[newLvl].name}`,'blue');playSuccessSound();}updateAllUI();saveGame();}
+
+function getAdvice(){const tips=[];const lowStock=Object.entries(G.inventory).filter(([k,v])=>v.qty<5&&v.qty>0);if(Object.keys(G.inventory).length===0)tips.push('🔴 متجرك فارغ! اذهب للسوق واشترِ منتجات فوراً.');if(lowStock.length>0)tips.push(`⚠️ مخزون منخفض! أعد التزويد الآن.`);if(G.totalEmployees===0)tips.push('👥 بدون موظفين، المبيعات منخفضة! وظّف موظفين.');if(G.satisfaction<50)tips.push('😟 رضا العملاء منخفض. وفّر مخزون وأسعار معقولة.');if(G.reputation<40)tips.push('📉 سمعتك ضعيفة. استخدم الإعلانات!');if(G.storeSize<3)tips.push('🏢 وسّع متجرك! حجم أكبر = عملاء أكثر!');if(G.parkingSpaces<2)tips.push('🅿️ أضف مواقف سيارات! العملاء يقدرونها!');if(tips.length===0)tips.push('✅ أداؤك ممتاز! استمر بهذا المسار.');const tip=tips[Math.floor(Math.random()*tips.length)];addAdvisorMsg(tip);playNotificationSound();}
+
+updateAllUI();
+</script>
+  <div id="app" class="app-root">
+   <div id="splash-screen" class="h-full w-full flex flex-col items-center justify-center bg-gradient-to-br from-[#0f0f23] via-[#1a1a3e] to-[#0f0f23]">
+    <div class="anim-fade text-center">
+     <div class="mb-6">
+      <svg width="120" height="120" viewbox="0 0 120 120" class="mx-auto">
+       <defs>
+        <lineargradient id="lg1" x1="0%" y1="100%" x2="100%" y2="0%">
+         <stop offset="0%" style="stop-color:#10b981" />
+         <stop offset="100%" style="stop-color:#34d399" />
+        </lineargradient>
+       </defs> <rect x="25" y="35" width="50" height="55" rx="6" fill="none" stroke="url(#lg1)" stroke-width="3" /> <rect x="35" y="25" width="30" height="15" rx="4" fill="none" stroke="url(#lg1)" stroke-width="3" /> <polyline points="55,75 70,55 80,62 100,30" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round" />
+      </svg>
+     </div>
+     <h1 class="text-5xl font-black text-emerald-400 mb-2">متجر سهم</h1>
+     <p class="text-gray-400 text-lg mb-8">ابنِ إمبراطوريتك التجارية! 🚀</p><button id="btn-start" onclick="startGame()" class="btn-action glow-green bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xl px-12 py-4 rounded-2xl">🚀 ابدأ اللعب</button> <button id="btn-continue" onclick="continueGame()" class="btn-action hidden mt-4 bg-gray-700 hover:bg-gray-600 text-white font-bold px-8 py-3 rounded-xl block mx-auto">▶ متابعة اللعب</button>
+    </div>
+   </div>
+   <div id="game-screen" class="hidden h-full w-full flex flex-col">
+    <header class="bg-[#161630] border-b border-gray-800 px-4 py-3 flex items-center justify-between flex-shrink-0">
+     <div class="flex items-center gap-3">
+      <svg width="32" height="32" viewbox="0 0 120 120"><rect x="25" y="35" width="50" height="55" rx="6" fill="none" stroke="#10b981" stroke-width="4" /><polyline points="55,75 70,55 80,62 100,30" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round" />
+      </svg><span id="top-store-name" class="font-bold text-emerald-400 text-lg">متجر سهم</span>
+     </div>
+     <div class="flex items-center gap-4 text-sm">
+      <span id="top-day" class="text-gray-400">📅 اليوم 1</span> <span id="top-level" class="bg-emerald-900 text-emerald-300 px-3 py-1 rounded-full text-xs font-bold">مستوى 1</span> <span id="top-cash" class="text-yellow-400 font-bold">💰 10,000</span> <span id="top-capacity" class="text-blue-400 font-bold text-xs">👥 0/0</span> <button id="sound-toggle" class="sound-toggle ml-2 text-xl cursor-pointer hover:scale-125 transition-all" onclick="toggleSound()" title="تشغيل/إيقاف الصوت">🔊</button>
+     </div>
+    </header>
+    <nav class="bg-[#161630] flex border-b border-gray-800 px-2 flex-shrink-0 overflow-x-auto">
+     <button onclick="switchTab('dashboard')" class="tab-btn tab-active px-4 py-3 text-sm font-bold whitespace-nowrap" data-tab="dashboard">📊 لوحة التحكم</button> <button onclick="switchTab('store')" class="tab-btn px-4 py-3 text-sm font-bold text-gray-500 whitespace-nowrap" data-tab="store">🏪 المتجر</button> <button onclick="switchTab('market')" class="tab-btn px-4 py-3 text-sm font-bold text-gray-500 whitespace-nowrap" data-tab="market">📦 السوق</button> <button onclick="switchTab('staff')" class="tab-btn px-4 py-3 text-sm font-bold text-gray-500 whitespace-nowrap" data-tab="staff">👥 الموظفين</button> <button onclick="switchTab('upgrades')" class="tab-btn px-4 py-3 text-sm font-bold text-gray-500 whitespace-nowrap relative" data-tab="upgrades">⭐ الترقيات <span id="upgrade-badge" class="notification-badge hidden">!</span></button> <button onclick="switchTab('advertising')" class="tab-btn px-4 py-3 text-sm font-bold text-gray-500 whitespace-nowrap relative" data-tab="advertising">📢 إعلانات <span id="ad-badge" class="notification-badge hidden">!</span></button> <button onclick="switchTab('challenges')" class="tab-btn px-4 py-3 text-sm font-bold text-gray-500 whitespace-nowrap relative" data-tab="challenges">🎯 التحديات <span id="challenge-badge" class="notification-badge hidden">!</span></button> <button onclick="switchTab('advisor')" class="tab-btn px-4 py-3 text-sm font-bold text-gray-500 whitespace-nowrap" data-tab="advisor">🤖 المستشار</button> <button onclick="switchTab('events')" class="tab-btn px-4 py-3 text-sm font-bold text-gray-500 whitespace-nowrap" data-tab="events">⚡ الأحداث</button>
+    </nav>
+    <div id="tab-content" class="flex-1 overflow-y-auto p-4">
+     <div id="tab-dashboard" class="tab-panel space-y-4">
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+       <div class="bg-[#1a1a3e] rounded-xl p-4 card-hover anim-fade">
+        <div class="text-gray-500 text-xs mb-1">
+         💰 النقد
+        </div>
+        <div id="kpi-cash" class="text-2xl font-black text-yellow-400">
+         10,000
+        </div>
+        <div class="text-gray-600 text-xs">
+         ر.س
+        </div>
+       </div>
+       <div class="bg-[#1a1a3e] rounded-xl p-4 card-hover anim-fade" style="animation-delay:0.1s">
+        <div class="text-gray-500 text-xs mb-1">
+         📈 الأرباح
+        </div>
+        <div id="kpi-profit" class="text-2xl font-black text-emerald-400">
+         0
+        </div>
+        <div class="text-gray-600 text-xs">
+         ر.س
+        </div>
+       </div>
+       <div class="bg-[#1a1a3e] rounded-xl p-4 card-hover anim-fade" style="animation-delay:0.2s">
+        <div class="text-gray-500 text-xs mb-1">
+         ⭐ السمعة
+        </div>
+        <div id="kpi-rep" class="text-2xl font-black text-blue-400">
+         50
+        </div>
+        <div class="text-gray-600 text-xs">
+         / 100
+        </div>
+       </div>
+       <div class="bg-[#1a1a3e] rounded-xl p-4 card-hover anim-fade" style="animation-delay:0.3s">
+        <div class="text-gray-500 text-xs mb-1">
+         😊 الرضا
+        </div>
+        <div id="kpi-sat" class="text-2xl font-black text-purple-400">
+         70
+        </div>
+        <div class="text-gray-600 text-xs">
+         %
+        </div>
+       </div>
+       <div class="bg-[#1a1a3e] rounded-xl p-4 card-hover anim-fade" style="animation-delay:0.4s">
+        <div class="text-gray-500 text-xs mb-1">
+         👥 الموظفين
+        </div>
+        <div id="kpi-emp" class="text-2xl font-black text-cyan-400">
+         0
+        </div>
+        <div class="text-gray-600 text-xs">
+         موظف
+        </div>
+       </div>
+      </div>
+      <div class="bg-[#1a1a3e] rounded-xl p-4 anim-fade" style="animation-delay:0.5s">
+       <div class="flex justify-between items-center mb-2">
+        <span class="text-sm font-bold">تقدم المستوى</span> <span id="level-label" class="text-emerald-400 text-sm font-bold">متجر صغير</span>
+       </div>
+       <div class="w-full bg-gray-800 rounded-full h-3">
+        <div id="level-bar" class="bg-gradient-to-r from-emerald-600 to-emerald-400 h-3 rounded-full progress-bar" style="width:5%"></div>
+       </div>
+       <div class="flex justify-between text-xs text-gray-600 mt-1">
+        <span>مستوى 1</span><span>مستوى 5 - القابضة</span>
+       </div>
+      </div>
+      <div class="bg-[#1a1a3e] rounded-xl p-4 anim-fade" style="animation-delay:0.6s">
+       <div class="text-sm font-bold mb-3">
+        📊 أداء آخر 7 أيام
+       </div>
+       <div id="mini-chart" class="flex items-end gap-1 h-24"></div>
+      </div><button onclick="nextDay()" class="btn-action w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold py-4 rounded-xl text-lg">⏭ انتقل لليوم التالي</button>
+     </div>
+     <div id="tab-store" class="tab-panel hidden space-y-4">
+      <div class="text-lg font-bold mb-4 flex items-center gap-2">
+       🏪 منتجات متجرك <span id="section-count" class="bg-emerald-600 px-3 py-1 rounded-full text-sm text-white">0</span>
+      </div>
+      <div id="store-sections-container"></div>
+      <div class="bg-[#1a1a3e] rounded-xl p-4 text-center text-gray-500" id="store-empty">
+       <p>لا توجد منتجات بعد. اذهب للسوق لشراء منتجات!</p>
+      </div>
+     </div>
+     <div id="tab-market" class="tab-panel hidden space-y-3">
+      <div class="text-lg font-bold mb-4">
+       📦 سوق الجملة - اشترِ المنتجات
+      </div>
+      <div id="market-sections-container"></div>
+     </div>
+     <div id="tab-staff" class="tab-panel hidden space-y-4">
+      <div class="text-lg font-bold mb-4">
+       👥 إدارة الموظفين المتقدمة
+      </div>
+      <div class="bg-blue-900 bg-opacity-30 border border-blue-500 rounded-xl p-4 mb-4">
+       <p class="text-sm text-gray-300">💡 كل موظف يزيد الإنتاجية بنسبة 15%. الموظفون القسميون يخصصون خدماتهم للأقسام!</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-1 gap-3">
+       <div id="general-staff" class="bg-[#1a1a3e] rounded-xl p-4">
+        <div class="text-lg font-bold mb-3 flex items-center gap-2">
+         <span>👤 الموظفون العامون</span><span id="general-count" class="bg-emerald-600 text-white px-2 py-1 rounded text-sm">0</span>
+        </div>
+        <div class="text-sm text-gray-400 mb-3">
+         تكلفة: <strong id="general-cost" class="text-red-400">0</strong> ر.س/يوم | مضاعف: <strong id="general-mult" class="text-emerald-400">0%</strong>
+        </div><button onclick="hireGeneralStaff()" class="btn-action w-full bg-blue-700 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-bold">➕ توظيف عام (150 ر.س)</button> <button onclick="fireGeneralStaff()" class="btn-action w-full bg-red-700 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-bold mt-2">➖ تسريح</button>
+       </div>
+      </div>
+      <div class="text-lg font-bold mt-6 mb-4">
+       🎯 موظفو الأقسام المتخصصون
+      </div>
+      <div id="department-staff-container" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+     </div>
+     <div id="tab-upgrades" class="tab-panel hidden space-y-4">
+      <div class="text-lg font-bold mb-4">
+       ⭐ ترقيات المتجر
+      </div>
+      <div class="bg-yellow-900 bg-opacity-30 border border-yellow-500 rounded-xl p-4 mb-4">
+       <p class="text-sm text-gray-300">💰 استثمر أموالك لترقية متجرك وزيادة الإنتاجية والسعة!</p>
+      </div>
+      <div id="upgrades-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+     </div>
+     <div id="tab-advertising" class="tab-panel hidden space-y-4">
+      <div class="text-lg font-bold mb-4">
+       📢 حملات الإعلانات
+      </div>
+      <div class="bg-blue-900 bg-opacity-30 border border-blue-500 rounded-xl p-4 mb-4">
+       <p class="text-sm text-gray-300">💡 الإعلانات تزيد السمعة والطلب على المنتجات! 🎁</p>
+      </div>
+      <div id="ads-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+     </div>
+     <div id="tab-challenges" class="tab-panel hidden space-y-4">
+      <div class="text-lg font-bold mb-4 flex items-center gap-2">
+       🎯 التحديات اليومية <span id="active-challenges-count" class="bg-emerald-600 px-3 py-1 rounded-full text-sm text-white">0</span>
+      </div>
+      <div id="challenges-list" class="grid grid-cols-1 md:grid-cols-2 gap-4 anim-fade"></div>
+      <div id="challenges-empty" class="bg-[#1a1a3e] rounded-xl p-6 text-center text-gray-500">
+       🎊 أكملت كل التحديات!
+      </div>
+     </div>
+     <div id="tab-advisor" class="tab-panel hidden space-y-4">
+      <div class="flex items-center gap-3 mb-4">
+       <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center text-2xl">
+        🤖
+       </div>
+       <div>
+        <div class="font-bold text-lg text-emerald-400">
+         مستشار سهم الذكي
+        </div>
+        <div class="text-gray-500 text-xs">
+         مستشار أعمالك الشخصي
+        </div>
+       </div>
+      </div>
+      <div id="advisor-messages" class="space-y-3 max-h-96 overflow-y-auto"></div><button onclick="getAdvice()" class="btn-action w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold py-3 rounded-xl">💡 اطلب نصيحة جديدة</button>
+     </div>
+     <div id="tab-events" class="tab-panel hidden space-y-4">
+      <div class="text-lg font-bold mb-4">
+       ⚡ الأحداث والتحديات
+      </div>
+      <div id="events-list" class="space-y-3"></div>
+      <div id="events-empty" class="bg-[#1a1a3e] rounded-xl p-6 text-center text-gray-500">
+       لا توجد أحداث حالياً. استمر باللعب!
+      </div>
+     </div>
+    </div>
+   </div>
+   <div id="toast-container" class="fixed top-4 left-4 right-4 z-50 flex flex-col items-center gap-2 pointer-events-none"></div>
+   <div id="effects-container" class="fixed inset-0 pointer-events-none"></div>
+  </div>
+  <script>
+let AUDIO = {enabled:true,context:null};
+function initAudio(){if(!AUDIO.context){try{const AudioContext=window.AudioContext||window.webkitAudioContext;AUDIO.context=new AudioContext();}catch(e){}}}
+function playTone(freq,duration,type='sine'){if(!AUDIO.enabled||!AUDIO.context)return;try{const ctx=AUDIO.context;const osc=ctx.createOscillator();const gain=ctx.createGain();osc.connect(gain);gain.connect(ctx.destination);osc.type=type;osc.frequency.value=freq;gain.gain.setValueAtTime(0.3,ctx.currentTime);gain.gain.exponentialRampToValueAtTime(0.01,ctx.currentTime+duration);osc.start(ctx.currentTime);osc.stop(ctx.currentTime+duration);}catch(e){}}
+function playCoinSound(){playTone(800,0.1,'sine');setTimeout(()=>playTone(1200,0.1,'sine'),50);}
+function playSuccessSound(){playTone(523,0.1);setTimeout(()=>playTone(659,0.1),100);setTimeout(()=>playTone(784,0.2),200);}
+function playErrorSound(){playTone(300,0.15);setTimeout(()=>playTone(200,0.15),100);}
+function playNotificationSound(){playTone(700,0.08);setTimeout(()=>playTone(900,0.08),80);}
+function toggleSound(){AUDIO.enabled=!AUDIO.enabled;const btn=document.getElementById('sound-toggle');btn.textContent=AUDIO.enabled?'🔊':'🔇';showToast(AUDIO.enabled?'✅ الصوت مفعّل':'🔇 الصوت معطّل');}
+
+const LEVELS=[{name:'متجر صغير',target:0},{name:'بقالة ناجحة',target:20000},{name:'سوبرماركت',target:80000},{name:'سلسلة فروع',target:250000},{name:'سهم القابضة',target:1000000}];
+
+const PRODUCT_CATEGORIES=[
+{id:'basics',name:'الأساسيات',emoji:'🥘',color:'#059669'},
+{id:'beverages',name:'المشروبات',emoji:'🥤',color:'#3b82f6'},
+{id:'dairy',name:'الألبان والجبن',emoji:'🧈',color:'#f59e0b'},
+{id:'meat',name:'اللحوم والدواجن',emoji:'🍖',color:'#ef4444'},
+{id:'fruits',name:'الفواكه والخضار',emoji:'🥕',color:'#10b981'},
+{id:'sweets',name:'الحلويات والشوكولاتة',emoji:'🍫',color:'#ec4899'},
+{id:'snacks',name:'الوجبات الخفيفة',emoji:'🥒',color:'#f97316'},
+{id:'frozen',name:'المجمدات',emoji:'🧊',color:'#06b6d4'},
+{id:'local',name:'المنتجات المحلية',emoji:'🌴',color:'#8b5cf6'},
+{id:'organic',name:'العضوية والطبيعية',emoji:'🌿',color:'#14b8a6'},
+{id:'premium',name:'المنتجات الفاخرة',emoji:'👑',color:'#d97706'},
+{id:'baby',name:'منتجات الأطفال',emoji:'👶',color:'#ec4899'},
+{id:'health',name:'الصحة والعناية',emoji:'💊',color:'#8b5cf6'},
+{id:'cosmetics',name:'مستحضرات التجميل',emoji:'💄',color:'#f472b6'},
+];
+
+const PRODUCTS=[
+{id:'rice',name:'أرز',emoji:'🍚',cost:8,basePrice:15,category:'basics',popularity:0.95},
+{id:'flour',name:'دقيق',emoji:'🌾',cost:5,basePrice:11,category:'basics',popularity:0.9},
+{id:'salt',name:'ملح',emoji:'🧂',cost:2,basePrice:5,category:'basics',popularity:0.85},
+{id:'sugar',name:'سكر',emoji:'🍬',cost:5,basePrice:10,category:'basics',popularity:0.8},
+{id:'oil',name:'زيت طبخ',emoji:'🫒',cost:12,basePrice:22,category:'basics',popularity:0.95},
+{id:'water',name:'ماء معدنية',emoji:'💧',cost:2,basePrice:5,category:'beverages',popularity:1.0},
+{id:'tea',name:'شاي',emoji:'🍵',cost:10,basePrice:20,category:'beverages',popularity:0.85},
+{id:'coffee',name:'قهوة',emoji:'☕',cost:25,basePrice:50,category:'beverages',popularity:0.9},
+{id:'juice',name:'عصير طازج',emoji:'🧃',cost:7,basePrice:14,category:'beverages',popularity:0.85},
+{id:'energy_drink',name:'مشروب طاقة',emoji:'⚡',cost:6,basePrice:12,category:'beverages',popularity:0.75},
+{id:'milk_drink',name:'حليب مخفوق',emoji:'🥛',cost:8,basePrice:16,category:'beverages',popularity:0.8},
+{id:'milk',name:'حليب طازج',emoji:'🥛',cost:6,basePrice:12,category:'dairy',popularity:0.9},
+{id:'cheese',name:'جبن',emoji:'🧀',cost:15,basePrice:30,category:'dairy',popularity:0.85},
+{id:'yogurt',name:'زبادي',emoji:'🥛',cost:5,basePrice:10,category:'dairy',popularity:0.88},
+{id:'butter',name:'زبدة',emoji:'🧈',cost:12,basePrice:24,category:'dairy',popularity:0.8},
+{id:'cream',name:'كريمة',emoji:'🥄',cost:8,basePrice:16,category:'dairy',popularity:0.75},
+{id:'chicken',name:'دجاج طازج',emoji:'🍗',cost:18,basePrice:35,category:'meat',popularity:0.9},
+{id:'beef',name:'لحم بقري',emoji:'🥩',cost:30,basePrice:60,category:'meat',popularity:0.85},
+{id:'lamb',name:'لحم ضأن',emoji:'🍖',cost:28,basePrice:55,category:'meat',popularity:0.8},
+{id:'fish',name:'أسماك',emoji:'🐟',cost:20,basePrice:40,category:'meat',popularity:0.82},
+{id:'sausage',name:'نقانق',emoji:'🌭',cost:12,basePrice:24,category:'meat',popularity:0.78},
+{id:'tomato',name:'طماطم',emoji:'🍅',cost:3,basePrice:7,category:'fruits',popularity:0.92},
+{id:'onion',name:'بصل',emoji:'🧅',cost:2,basePrice:5,category:'fruits',popularity:0.88},
+{id:'garlic',name:'ثوم',emoji:'🧄',cost:4,basePrice:9,category:'fruits',popularity:0.85},
+{id:'carrot',name:'جزر',emoji:'🥕',cost:3,basePrice:7,category:'fruits',popularity:0.8},
+{id:'apple',name:'تفاح',emoji:'🍎',cost:5,basePrice:11,category:'fruits',popularity:0.86},
+{id:'banana',name:'موز',emoji:'🍌',cost:4,basePrice:9,category:'fruits',popularity:0.88},
+{id:'orange',name:'برتقال',emoji:'🍊',cost:6,basePrice:12,category:'fruits',popularity:0.87},
+{id:'lettuce',name:'خس',emoji:'🥬',cost:3,basePrice:7,category:'fruits',popularity:0.78},
+{id:'chocolate',name:'شوكولاتة',emoji:'🍫',cost:8,basePrice:16,category:'sweets',popularity:0.85},
+{id:'candy',name:'حلوى',emoji:'🍭',cost:3,basePrice:7,category:'sweets',popularity:0.8},
+{id:'pastry',name:'معجنات',emoji:'🥐',cost:7,basePrice:15,category:'sweets',popularity:0.82},
+{id:'honey',name:'عسل',emoji:'🍯',cost:20,basePrice:40,category:'sweets',popularity:0.88},
+{id:'jam',name:'مربى',emoji:'🍓',cost:6,basePrice:13,category:'sweets',popularity:0.75},
+{id:'chips',name:'شيبس',emoji:'🥔',cost:4,basePrice:9,category:'snacks',popularity:0.8},
+{id:'popcorn',name:'فشار',emoji:'🍿',cost:3,basePrice:7,category:'snacks',popularity:0.75},
+{id:'nuts',name:'المكسرات',emoji:'🥜',cost:15,basePrice:30,category:'snacks',popularity:0.85},
+{id:'seeds',name:'بذور',emoji:'🌻',cost:8,basePrice:16,category:'snacks',popularity:0.72},
+{id:'crackers',name:'بسكويت',emoji:'🍘',cost:5,basePrice:10,category:'snacks',popularity:0.78},
+{id:'icecream',name:'آيس كريم',emoji:'🍦',cost:10,basePrice:20,category:'frozen',popularity:0.8},
+{id:'frozen_veg',name:'خضار مجمدة',emoji:'🥦',cost:5,basePrice:11,category:'frozen',popularity:0.7},
+{id:'frozen_chicken',name:'دجاج مجمد',emoji:'❄️',cost:15,basePrice:30,category:'frozen',popularity:0.75},
+{id:'dates',name:'تمر الجودة',emoji:'🌴',cost:20,basePrice:40,category:'local',popularity:0.95},
+{id:'bread_local',name:'خبز محلي',emoji:'🍞',cost:3,basePrice:7,category:'local',popularity:0.92},
+{id:'herbs',name:'أعشاب محلية',emoji:'🌿',cost:5,basePrice:12,category:'local',popularity:0.8},
+{id:'organic_milk',name:'حليب عضوي',emoji:'🌿',cost:10,basePrice:20,category:'organic',popularity:0.85},
+{id:'organic_honey',name:'عسل عضوي',emoji:'🍯',cost:25,basePrice:50,category:'organic',popularity:0.88},
+{id:'organic_veg',name:'خضار عضوية',emoji:'🥬',cost:8,basePrice:16,category:'organic',popularity:0.82},
+{id:'premium_coffee',name:'قهوة فاخرة',emoji:'☕',cost:50,basePrice:100,category:'premium',popularity:0.8},
+{id:'premium_chocolate',name:'شوكولاتة فاخرة',emoji:'🍫',cost:20,basePrice:40,category:'premium',popularity:0.85},
+{id:'baby_formula',name:'حليب الأطفال',emoji:'👶',cost:30,basePrice:60,category:'baby',popularity:0.9},
+{id:'baby_food',name:'طعام الأطفال',emoji:'🥣',cost:15,basePrice:30,category:'baby',popularity:0.88},
+{id:'vitamins',name:'الفيتامينات',emoji:'💊',cost:25,basePrice:50,category:'health',popularity:0.82},
+{id:'soap',name:'الصابون',emoji:'🧼',cost:5,basePrice:12,category:'cosmetics',popularity:0.8},
+];
+
+const AD_CAMPAIGNS=[
+{id:'social_media',title:'📱 وسائل التواصل',desc:'إعلانات على انستقرام وتيك توك',cost:500,reputationGain:8,reachBoost:1.3},
+{id:'billboard',title:'🎨 لوحات إعلانية',desc:'لوحات في الشوارع الرئيسية',cost:1000,reputationGain:15,reachBoost:1.5},
+{id:'influencer',title:'⭐ تسويق مؤثرات',desc:'دعم من المؤثرين المشهورين',cost:2000,reputationGain:25,reachBoost:2},
+{id:'flyer',title:'📄 منشورات ورقية',desc:'توزيع نشرات إعلانية',cost:300,reputationGain:5,reachBoost:1.15},
+{id:'tv_ad',title:'📺 إعلان تلفزيوني',desc:'إعلان على القنوات المحلية',cost:3000,reputationGain:40,reachBoost:2.5},
+{id:'radio',title:'📻 إعلان إذاعي',desc:'إذاعة محطات راديو',cost:400,reputationGain:10,reachBoost:1.25},
+];
+
+const STORE_UPGRADES=[
+{id:'storage1',name:'توسيع المخزن 1',emoji:'📦',cost:2000,effect:'storage',amount:50,benefit:'زيادة السعة +50 وحدة'},
+{id:'storage2',name:'توسيع المخزن 2',emoji:'📦📦',cost:5000,effect:'storage',amount:100,benefit:'زيادة السعة +100 وحدة'},
+{id:'shelf_system',name:'نظام الأرفف الذكية',emoji:'📚',cost:3000,effect:'sales_boost',amount:1.15,benefit:'تزيد المبيعات 15%'},
+{id:'ac_system',name:'نظام التبريد المتقدم',emoji:'❄️',cost:4000,effect:'quality',amount:1.2,benefit:'جودة المنتجات +20%'},
+{id:'checkout_upgrade',name:'صناديق الدفع الذكية',emoji:'💳',cost:5000,effect:'checkout_speed',amount:1.25,benefit:'سرعة البيع +25%'},
+{id:'lighting_system',name:'إضاءة LED محترفة',emoji:'💡',cost:3500,effect:'ambiance',amount:1.1,benefit:'جاذبية +10%'},
+{id:'staff_room',name:'غرفة الموظفين',emoji:'🏢',cost:6000,effect:'staff_capacity',amount:10,benefit:'سعة موظفين +10'},
+{id:'security',name:'نظام الأمان',emoji:'🚨',cost:4500,effect:'security',amount:1.0,benefit:'حماية من السرقة'},
+{id:'online_platform',name:'متجر إلكتروني',emoji:'💻',cost:8000,effect:'online_sales',amount:1.5,benefit:'مبيعات إضافية +50%'},
+{id:'express_delivery',name:'خدمة التوصيل السريع',emoji:'🚚',cost:7000,effect:'delivery',amount:1.3,benefit:'رضا العملاء +30%'},
+];
+
+const CHALLENGES=[
+{id:'first_profit',title:'💰 أول ربح',desc:'حقق أول ربح موجب!',reward:500,difficulty:'easy',check:(g)=>g.history.length>0&&g.history[g.history.length-1]>0},
+{id:'millionaire',title:'💎 المليونير',desc:'وصل إجمالي أرباحك إلى مليون ريال!',reward:5000,difficulty:'hard',check:(g)=>g.totalProfit>=1000000},
+{id:'team_builder',title:'👥 فريق قوي',desc:'وظف 20 موظف!',reward:2500,difficulty:'medium',check:(g)=>g.totalEmployees>=20},
+{id:'empire_builder',title:'🏛️ بناء إمبراطورية',desc:'وصل مستواك إلى القابضة!',reward:10000,difficulty:'hard',check:(g)=>g.level>=4},
+];
+
+const EVENTS=[
+{id:'ramadan',title:'🌙 موسم رمضان',desc:'الطلب على التمر +50%!',effect:'demand_boost',targets:['dates','tea','coffee','juice'],mult:1.5,days:30},
+{id:'competitor',title:'🏪 منافس جديد',desc:'المبيعات تنخفض 20%',effect:'sales_drop',mult:0.8,days:7},
+{id:'blackfriday',title:'🖤 الجمعة البيضاء',desc:'الطلب يتضاعف!',effect:'demand_boost',targets:'all',mult:2,days:3},
+{id:'economic_crisis',title:'💥 أزمة اقتصادية',desc:'المبيعات -40%',effect:'sales_drop',mult:0.6,days:5},
+];
+
+let G={cash:10000,day:1,level:0,reputation:50,satisfaction:70,totalProfit:0,totalEmployees:0,generalStaff:0,departmentStaff:{},inventory:{},prices:{},history:[],activeEvents:[],advisorMsgs:[],savedId:null,soundEnabled:true,musicEnabled:true,challenges:[],completedChallenges:[],activeCampaigns:[],adsRun:{},upgrades:[],purchasedUpgrades:{},stats:{totalSold:0,totalSpent:0,daysPlayed:0,eventsCaught:0,profitStreakDays:0}};
+
+let currentData=[];
+
+const dataHandler={onDataChanged(data){currentData=data;if(data.length>0){const save=data[data.length-1];if(!G.savedId){G.savedId=save.__backendId;G.cash=save.cash||10000;G.day=save.day||1;G.level=save.level||0;G.reputation=save.reputation||50;G.satisfaction=save.satisfaction||70;G.totalProfit=save.total_profit||0;G.totalEmployees=save.employees||0;try{G.inventory=JSON.parse(save.inventory_json||'{}');}catch(e){G.inventory={};}try{G.departmentStaff=JSON.parse(save.department_employees_json||'{}');}catch(e){G.departmentStaff={};}try{G.purchasedUpgrades=JSON.parse(save.store_upgrades_json||'{}');}catch(e){G.purchasedUpgrades={};}}}const btn=document.getElementById('btn-continue');if(btn)btn.classList.remove('hidden');updateAllUI();}};
+
+async function saveGame(){const record={type:'save',cash:G.cash,day:G.day,level:G.level,reputation:G.reputation,total_profit:G.totalProfit,inventory_json:JSON.stringify(G.inventory),employees:G.totalEmployees,satisfaction:G.satisfaction,sound_enabled:G.soundEnabled,music_enabled:G.musicEnabled,ads_json:JSON.stringify(G.adsRun),department_employees_json:JSON.stringify(G.departmentStaff),store_upgrades_json:JSON.stringify(G.purchasedUpgrades),timestamp:new Date().toISOString()};if(G.savedId&&currentData.length>0){const existing=currentData.find(d=>d.__backendId===G.savedId);if(existing){const updated={...existing,...record};await window.dataSdk.update(updated);return;}}if(currentData.length>=999){showToast('⚠️ حد التخزين!','red');return;}await window.dataSdk.create(record);}
+
+const defaultConfig={store_name:'متجر سهم',difficulty_setting:'عادي',background_color:'#0f0f23',surface_color:'#1a1a3e',text_color:'#f3f4f6',primary_color:'#10b981',accent_color:'#eab308',font_family:'Tajawal',font_size:16};
+
+function applyConfig(config){const bg=config.background_color||defaultConfig.background_color;const sf=config.surface_color||defaultConfig.surface_color;const tx=config.text_color||defaultConfig.text_color;const ff=config.font_family||defaultConfig.font_family;const fs=config.font_size||defaultConfig.font_size;const diff=config.difficulty_setting||'عادي';document.body.style.background=bg;document.body.style.color=tx;document.body.style.fontFamily=`${ff}, Tajawal, sans-serif`;document.body.style.fontSize=fs+'px';const name=config.store_name||defaultConfig.store_name;const topName=document.getElementById('top-store-name');if(topName)topName.textContent=name;G.difficulty=diff;}
+
+window.elementSdk.init({defaultConfig,onConfigChange:async(config)=>applyConfig(config),mapToCapabilities:(config)=>({recolorables:[{get:()=>config.background_color||defaultConfig.background_color,set:(v)=>{config.background_color=v;window.elementSdk.setConfig({background_color:v})}},{get:()=>config.surface_color||defaultConfig.surface_color,set:(v)=>{config.surface_color=v;window.elementSdk.setConfig({surface_color:v})}},{get:()=>config.text_color||defaultConfig.text_color,set:(v)=>{config.text_color=v;window.elementSdk.setConfig({text_color:v})}},{get:()=>config.primary_color||defaultConfig.primary_color,set:(v)=>{config.primary_color=v;window.elementSdk.setConfig({primary_color:v})}},{get:()=>config.accent_color||defaultConfig.accent_color,set:(v)=>{config.accent_color=v;window.elementSdk.setConfig({accent_color:v})}}],borderables:[],fontEditable:{get:()=>config.font_family||defaultConfig.font_family,set:(v)=>{config.font_family=v;window.elementSdk.setConfig({font_family:v})}},fontSizeable:{get:()=>config.font_size||defaultConfig.font_size,set:(v)=>{config.font_size=v;window.elementSdk.setConfig({font_size:v})}}}),mapToEditPanelValues:(config)=>new Map([['store_name',config.store_name||defaultConfig.store_name],['difficulty_setting',config.difficulty_setting||defaultConfig.difficulty_setting]])});
+
+window.dataSdk.init(dataHandler);
+initAudio();
+
+function showToast(msg,color='emerald'){playCoinSound();const c=document.getElementById('toast-container');const t=document.createElement('div');t.className=`toast-msg bg-${color}-600 text-white px-6 py-3 rounded-xl font-bold text-sm shadow-lg pointer-events-auto`;t.textContent=msg;c.appendChild(t);setTimeout(()=>t.remove(),3000);}
+
+function switchTab(tab){playTone(600,0.05);document.querySelectorAll('.tab-btn').forEach(b=>{b.classList.remove('tab-active');b.classList.add('text-gray-500')});document.querySelectorAll('.tab-panel').forEach(p=>p.classList.add('hidden'));const btn=document.querySelector(`[data-tab="${tab}"]`);if(btn){btn.classList.add('tab-active');btn.classList.remove('text-gray-500')}const panel=document.getElementById('tab-'+tab);if(panel)panel.classList.remove('hidden');}
+
+function fmt(n){return Math.round(n).toLocaleString('ar-SA')}
+
+function startGame(){initAudio();playSuccessSound();G={cash:10000,day:1,level:0,reputation:50,satisfaction:70,totalProfit:0,totalEmployees:0,generalStaff:0,departmentStaff:{},inventory:{},prices:{},history:[],activeEvents:[],advisorMsgs:[],savedId:null,soundEnabled:true,musicEnabled:true,challenges:[],completedChallenges:[],activeCampaigns:[],adsRun:{},upgrades:STORE_UPGRADES.map(u=>({...u})),purchasedUpgrades:{},stats:{totalSold:0,totalSpent:0,daysPlayed:0,eventsCaught:0}};G.challenges=CHALLENGES.map(c=>({...c,completed:false}));PRODUCT_CATEGORIES.forEach(cat=>{G.departmentStaff[cat.id]=0;});showGameScreen();addAdvisorMsg('مرحباً! أنا مستشار سهم 🤖 الآن لديك نظام موظفين متقدم وترقيات متجر! ابدأ بتوظيف موظفين عامين أو قسميين 👥');updateAllUI();saveGame();}
+
+function continueGame(){initAudio();playSuccessSound();showGameScreen();addAdvisorMsg('مرحباً بعودتك! 🤖 استمر في بناء امبراطوريتك!');updateAllUI();}
+
+function showGameScreen(){document.getElementById('splash-screen').classList.add('hidden');document.getElementById('game-screen').classList.remove('hidden');}
+
+function updateAllUI(){let lvl=0;for(let i=LEVELS.length-1;i>=0;i--){if(G.totalProfit>=LEVELS[i].target){lvl=i;break;}}G.level=lvl;document.getElementById('top-day').textContent=`📅 اليوم ${G.day}`;document.getElementById('top-level').textContent=`مستوى ${lvl+1}`;document.getElementById('top-cash').textContent=`💰 ${fmt(G.cash)}`;document.getElementById('top-capacity').textContent=`👥 ${G.totalEmployees}/${Math.max(5,G.generalStaff*2+Object.values(G.departmentStaff).reduce((a,b)=>a+b,0))}`;document.getElementById('kpi-cash').textContent=fmt(G.cash);document.getElementById('kpi-profit').textContent=fmt(G.totalProfit);document.getElementById('kpi-rep').textContent=G.reputation;document.getElementById('kpi-sat').textContent=G.satisfaction;document.getElementById('kpi-emp').textContent=G.totalEmployees;document.getElementById('level-label').textContent=LEVELS[lvl].name;const nextTarget=lvl<LEVELS.length-1?LEVELS[lvl+1].target:LEVELS[lvl].target;const prevTarget=LEVELS[lvl].target;const pct=nextTarget>prevTarget?Math.min(100,((G.totalProfit-prevTarget)/(nextTarget-prevTarget))*100):100;document.getElementById('level-bar').style.width=pct+'%';renderMiniChart();renderStoreByCategory();renderMarketByCategory();renderDepartmentStaff();renderUpgrades();renderAdvertising();renderEvents();renderAdvisor();updateChallenges();renderCommercial();renderBills();renderSimulatorProducts();}
+
+function renderMiniChart(){const c=document.getElementById('mini-chart');const last7=G.history.slice(-7);if(last7.length===0){c.innerHTML='<div class="text-gray-600 text-sm w-full text-center">ابدأ اللعب</div>';return;}const max=Math.max(...last7.map(h=>Math.abs(h)),1);c.innerHTML=last7.map((v,i)=>{const h=Math.max(8,(Math.abs(v)/max)*88);const color=v>=0?'bg-emerald-500':'bg-red-500';return `<div class="flex-1 flex flex-col items-center justify-end gap-1"><div class="text-xs ${v>=0?'text-emerald-400':'text-red-400'}">${fmt(v)}</div><div class="${color} rounded-t w-full" style="height:${h}%"></div></div>`;}).join('');}
+
+function renderStoreByCategory(){const c=document.getElementById('store-sections-container');const empty=document.getElementById('store-empty');const items=Object.entries(G.inventory).filter(([k,v])=>v.qty>0);if(items.length===0){c.innerHTML='';empty.classList.remove('hidden');return;}empty.classList.add('hidden');const grouped={};items.forEach(([id,item])=>{const prod=PRODUCTS.find(p=>p.id===id);if(!grouped[prod.category])grouped[prod.category]=[];grouped[prod.category].push({id,item,prod});});const sections=PRODUCT_CATEGORIES.filter(cat=>grouped[cat.id]);document.getElementById('section-count').textContent=sections.length;c.innerHTML=sections.map((cat,i)=>{const items=grouped[cat.id]||[];return `<div class="category-section anim-slide" style="animation-delay:${i*0.05}s"><div class="category-header" style="border-right-color:${cat.color};background:rgba(${parseInt(cat.color.slice(1,3),16)},${parseInt(cat.color.slice(3,5),16)},${parseInt(cat.color.slice(5,7),16)},0.1)" onclick="toggleCategory(this)"><span class="text-2xl">${cat.emoji}</span><span class="font-bold text-lg flex-1">${cat.name}</span><span class="category-toggle">▼</span></div><div class="product-grid">${items.map(({id,item,prod})=>{const price=G.prices[id]||prod.basePrice;const margin=((price-prod.cost)/prod.cost*100).toFixed(0);return `<div class="product-card ${item.qty<5?'low-stock':''} anim-fade"><div class="text-3xl mb-1">${prod.emoji}</div><div class="font-bold text-xs">${prod.name}</div><div class="text-xs text-gray-400">الكمية: ${item.qty}</div><div class="text-xs text-yellow-400">هامش: ${margin}%</div><div class="flex gap-1 mt-1"><button onclick="changePrice('${id}',-1)" class="btn-action bg-red-900 flex-1 h-6 rounded text-xs">-</button><span class="text-xs font-bold flex-1 text-center">${price}</span><button onclick="changePrice('${id}',1)" class="btn-action bg-emerald-900 flex-1 h-6 rounded text-xs">+</button></div></div>`;}).join('')}</div></div>`;}).join('');}
+
+function toggleCategory(el){el.querySelector('.category-toggle').classList.toggle('collapsed');const grid=el.nextElementSibling;grid.style.display=grid.style.display==='none'?'grid':'none';}
+
+function renderMarketByCategory(){const c=document.getElementById('market-sections-container');c.innerHTML=PRODUCT_CATEGORIES.map((cat,i)=>{const prods=PRODUCTS.filter(p=>p.category===cat.id);return `<div class="category-section anim-slide" style="animation-delay:${i*0.05}s"><div class="category-header" style="border-right-color:${cat.color};background:rgba(${parseInt(cat.color.slice(1,3),16)},${parseInt(cat.color.slice(3,5),16)},${parseInt(cat.color.slice(5,7),16)},0.1)" onclick="toggleCategory(this)"><span class="text-2xl">${cat.emoji}</span><span class="font-bold text-lg flex-1">${cat.name}</span><span class="category-toggle">▼</span></div><div class="product-grid">${prods.map(p=>{const inStock=G.inventory[p.id]?.qty||0;return `<div class="product-card anim-fade"><div class="text-2xl mb-1">${p.emoji} ${p.name}</div><div class="text-xs text-yellow-400">جملة: ${p.cost}</div><div class="text-xs text-emerald-300">لديك: ${inStock}</div><div class="flex gap-1 mt-1"><button onclick="buyProduct('${p.id}',10)" class="btn-action bg-emerald-700 flex-1 py-1 rounded text-xs">10</button><button onclick="buyProduct('${p.id}',50)" class="btn-action bg-blue-700 flex-1 py-1 rounded text-xs">50</button></div></div>`;}).join('')}</div></div>`;}).join('');}
+
+function renderDepartmentStaff(){const c=document.getElementById('department-staff-container');c.innerHTML=PRODUCT_CATEGORIES.map(cat=>{const staff=G.departmentStaff[cat.id]||0;const capacity=Math.max(3,Math.floor(Object.values(G.inventory||{}).filter(item=>PRODUCTS.find(p=>p.id===item.id)?.category===cat.id).reduce((a,b)=>a+b.qty,0)/30));const isFull=staff>=capacity;const cost=staff*200;return `<div class="department-card anim-slide" style="border-color:${cat.color}"><div class="flex items-center gap-2 mb-2"><span class="text-2xl">${cat.emoji}</span><span class="font-bold flex-1">${cat.name}</span><span class="bg-blue-600 text-white px-2 py-1 rounded text-xs">${staff}/${capacity}</span></div><div class="text-xs text-gray-400 mb-2">التكلفة: ${fmt(cost)} ر.س/يوم | مضاعف: +${staff*10}%</div><div class="capacity-bar mb-2"><div class="capacity-fill ${isFull?'warning-low':''}" style="width:${Math.min(100,staff/capacity*100)}%"></div></div><div class="flex gap-1"><button onclick="hireDepartmentStaff('${cat.id}')" class="btn-action flex-1 bg-emerald-700 hover:bg-emerald-600 text-white px-3 py-1 rounded text-xs font-bold">➕ توظيف</button><button onclick="fireDepartmentStaff('${cat.id}')" class="btn-action flex-1 bg-red-700 hover:bg-red-600 text-white px-3 py-1 rounded text-xs font-bold">➖ تسريح</button></div>${isFull?'<div class="text-yellow-500 text-xs mt-2">⚠️ السعة ممتلئة!شتري منتجات أكثر لزيادة السعة</div>':''}</div>`;}).join('');}
+
+function renderUpgrades(){const c=document.getElementById('upgrades-list');c.innerHTML=G.upgrades.map((up,i)=>{const isOwned=G.purchasedUpgrades[up.id];return `<div class="upgrade-card anim-slide ${isOwned?'unlocked':''}" style="animation-delay:${i*0.08}s"><div class="flex justify-between items-start mb-2"><div class="flex-1"><div class="font-bold text-lg">${up.emoji} ${up.name}</div><div class="text-sm text-gray-400 mt-1">${up.benefit}</div></div>${isOwned?'<span class="text-2xl">✅</span>':''}</div>${!isOwned?`<div class="upgrade-reward">💰 ${fmt(up.cost)} ر.س</div><button onclick="buyUpgrade('${up.id}')" class="btn-action w-full mt-2 bg-yellow-700 hover:bg-yellow-600 text-white px-4 py-2 rounded font-bold text-sm">شراء الآن</button>`:'<div class="text-emerald-400 font-bold text-sm">تم تطبيق الترقية ✨</div>'}</div>`;}).join('');}
+
+function renderAdvertising(){const c=document.getElementById('ads-list');c.innerHTML=AD_CAMPAIGNS.map((ad,i)=>{const isActive=G.activeCampaigns.includes(ad.id);return `<div class="ad-campaign anim-slide" style="animation-delay:${i*0.1}s"><div class="font-bold text-lg">${ad.title}</div><div class="text-gray-300 text-sm mt-1">${ad.desc}</div><div class="flex items-center gap-2 mt-2 text-xs"><span>📊 سمعة +${ad.reputationGain}</span><span>📈 وصول x${ad.reachBoost}</span></div><div class="flex justify-between items-center mt-3"><div class="ad-reward">💰 ${fmt(ad.cost)}</div><button onclick="runAd('${ad.id}')" class="btn-action ${isActive?'bg-green-700 hover:bg-green-600':'bg-purple-700 hover:bg-purple-600'} text-white px-4 py-1 rounded text-xs font-bold">${isActive?'✓ نشط':'📢 شغّل'}</button></div></div>`;}).join('');}
+
+function renderEvents(){const c=document.getElementById('events-list');const empty=document.getElementById('events-empty');if(G.activeEvents.length===0){c.innerHTML='';empty.classList.remove('hidden');return;}empty.classList.add('hidden');c.innerHTML=G.activeEvents.map(e=>`<div class="bg-[#1a1a3e] rounded-xl p-4 border-r-4 border-yellow-500 anim-slide"><div class="font-bold text-lg">${e.title}</div><div class="text-gray-400 text-sm mt-1">${e.desc}</div><div class="text-yellow-500 text-xs mt-2">⏰ متبقي: ${e.daysLeft} أيام</div></div>`).join('');}
+
+function renderAdvisor(){const c=document.getElementById('advisor-messages');c.innerHTML=G.advisorMsgs.slice(-10).map(m=>`<div class="bg-[#1a1a3e] rounded-xl p-3 anim-slide text-sm">${m}</div>`).join('');c.scrollTop=c.scrollHeight;}
+
+function addAdvisorMsg(msg){G.advisorMsgs.push(msg);renderAdvisor();}
+
+function updateChallenges(){if(!G.challenges)return;G.challenges.forEach(ch=>{if(ch.completed)return;let isComplete=false;if(ch.check)isComplete=ch.check(G);if(isComplete){ch.completed=true;completeChallenge(ch);}});renderChallenges();}
+
+function completeChallenge(challenge){playSuccessSound();G.cash+=challenge.reward;G.completedChallenges.push(challenge.id);showToast(`🎉 ${challenge.title}! +${fmt(challenge.reward)} ر.س`,'emerald');addAdvisorMsg(`🏆 تهانينا! أكملت "${challenge.title}" وحصلت على ${fmt(challenge.reward)} ر.س!`);}
+
+function renderChallenges(){const c=document.getElementById('challenges-list');const empty=document.getElementById('challenges-empty');const active=G.challenges.filter(ch=>!ch.completed);document.getElementById('active-challenges-count').textContent=active.length;if(active.length===0){c.innerHTML='';empty.classList.remove('hidden');return;}empty.classList.add('hidden');c.innerHTML=active.map((ch,i)=>{const prog=getChallengeProg(ch);const diffClass=`difficulty-${ch.difficulty}`;return `<div class="challenge-card anim-slide" style="animation-delay:${i*0.1}s"><div class="flex justify-between items-start mb-2"><div class="flex-1"><div class="font-bold text-lg">${ch.title}</div><div class="text-gray-400 text-sm mt-1">${ch.desc}</div></div><span class="difficulty-badge ${diffClass}">${ch.difficulty==='easy'?'⭐':ch.difficulty==='medium'?'⭐⭐':'⭐⭐⭐'}</span></div><div class="mt-2"><div class="flex justify-between text-xs text-gray-400 mb-1"><span>التقدم</span><span>${prog}%</span></div><div class="w-full bg-gray-800 rounded h-2"><div class="bg-emerald-500" style="width:${prog}%"></div></div></div><div class="text-yellow-400 font-bold text-sm mt-2">🎁 ${fmt(ch.reward)} ر.س</div></div>`;}).join('');}
+
+function getChallengeProg(ch){if(ch.id==='first_profit')return G.history.length>0&&G.history[G.history.length-1]>0?100:0;if(ch.id==='millionaire')return Math.min(100,Math.floor((G.totalProfit/1000000)*100));if(ch.id==='team_builder')return Math.min(100,Math.floor((G.totalEmployees/20)*100));if(ch.id==='empire_builder')return Math.min(100,((G.level+1)/5)*100);return 0;}
+
+function buyProduct(id,qty){const p=PRODUCTS.find(x=>x.id===id);const total=p.cost*qty;if(G.cash<total){showToast('❌ لا يوجد نقد!','red');playErrorSound();return;}G.cash-=total;if(!G.inventory[id])G.inventory[id]={qty:0};G.inventory[id].qty+=qty;if(!G.prices[id])G.prices[id]=p.basePrice;G.stats.totalSpent+=total;playCoinSound();showToast(`✅ تم شراء ${qty} ${p.name}`);updateAllUI();saveGame();}
+
+function changePrice(id,dir){const p=PRODUCTS.find(x=>x.id===id);if(!G.prices[id])G.prices[id]=p.basePrice;G.prices[id]=Math.max(1,G.prices[id]+dir);playTone(500+(G.prices[id]-p.basePrice)*2,0.05);updateAllUI();}
+
+function hireGeneralStaff(){if(G.cash<150){showToast('❌ لا يوجد نقد!','red');playErrorSound();return;}G.cash-=150;G.generalStaff++;G.totalEmployees++;playSuccessSound();showToast('✅ تم توظيف موظف عام!');updateAllUI();saveGame();}
+
+function fireGeneralStaff(){if(G.generalStaff<=0){showToast('❌ لا يوجد موظفين!','red');playErrorSound();return;}G.generalStaff--;G.totalEmployees--;playErrorSound();showToast('تم تسريح موظف','red');updateAllUI();saveGame();}
+
+function hireDepartmentStaff(catId){const cat=PRODUCT_CATEGORIES.find(c=>c.id===catId);if(!cat){showToast('❌ قسم غير صحيح!','red');return;}if(G.cash<200){showToast('❌ لا يوجد نقد!','red');playErrorSound();return;}const currentStaff=G.departmentStaff[catId]||0;const inventory=Object.entries(G.inventory||{}).filter(([id,item])=>PRODUCTS.find(p=>p.id===id)?.category===catId).reduce((a,b)=>a+b[1].qty,0);const capacity=Math.max(3,Math.floor(inventory/30));if(currentStaff>=capacity){showToast(`❌ السعة ممتلئة! (${currentStaff}/${capacity}) اشترِ منتجات أكثر`,'red');playErrorSound();return;}G.cash-=200;G.departmentStaff[catId]=(G.departmentStaff[catId]||0)+1;G.totalEmployees++;playSuccessSound();showToast(`✅ تم توظيف متخصص في ${cat.name}!`);updateAllUI();saveGame();}
+
+function fireDepartmentStaff(catId){const staff=G.departmentStaff[catId]||0;if(staff<=0){showToast('❌ لا يوجد موظفين!','red');playErrorSound();return;}G.departmentStaff[catId]=staff-1;G.totalEmployees--;playErrorSound();showToast('تم تسريح متخصص','red');updateAllUI();saveGame();}
+
+function buyUpgrade(upgradeId){const upgrade=G.upgrades.find(u=>u.id===upgradeId);if(!upgrade){showToast('❌ ترقية غير صحيحة!','red');return;}if(G.purchasedUpgrades[upgradeId]){showToast('✅ لديك هذه الترقية بالفعل!','blue');return;}if(G.cash<upgrade.cost){showToast('❌ لا يوجد نقد كافٍ!','red');playErrorSound();return;}G.cash-=upgrade.cost;G.purchasedUpgrades[upgradeId]=true;playSuccessSound();showToast(`🎉 تم شراء: ${upgrade.name}!`,'emerald');addAdvisorMsg(`⭐ رائع! تم تطبيق "${upgrade.name}" على متجرك!`);updateAllUI();saveGame();}
+
+function runAd(adId){const ad=AD_CAMPAIGNS.find(a=>a.id===adId);if(!ad)return;if(G.cash<ad.cost){showToast('❌ لا يوجد نقد!','red');playErrorSound();return;}G.cash-=ad.cost;G.reputation=Math.min(100,G.reputation+ad.reputationGain);G.adsRun[adId]=(G.adsRun[adId]||0)+1;if(!G.activeCampaigns.includes(adId))G.activeCampaigns.push(adId);playSuccessSound();showToast(`📢 ${ad.title} شغّالة!`,'purple');addAdvisorMsg(`📢 حملة ${ad.title} قيد التشغيل!`);updateAllUI();saveGame();}
+
+function nextDay(){G.day++;G.stats.daysPlayed++;let dailyProfit=0;let dailyCost=G.generalStaff*150;let totalSalesQty=0;Object.values(G.inventory).forEach(item=>item.qtySoldToday=0);const diffMult=G.difficulty==='سهل'?1.3:(G.difficulty==='صعب'?0.7:1);const empBonus=1+(G.totalEmployees*0.12);const deptBonus=1+Object.entries(G.departmentStaff).reduce((a,[catId,staff])=>{const inventory=Object.entries(G.inventory||{}).filter(([id])=>PRODUCTS.find(p=>p.id===id)?.category===catId).reduce((x,y)=>x+y[1].qty,0);return a+(inventory>0?staff*0.08:0);},0);let adBoost=1;G.activeCampaigns.forEach(adId=>{const ad=AD_CAMPAIGNS.find(a=>a.id===adId);if(ad)adBoost*=ad.reachBoost;});let eventSalesMult=1;G.activeEvents.forEach(e=>{if(e.effect==='sales_drop')eventSalesMult*=e.mult;});Object.entries(G.inventory).forEach(([id,item])=>{if(item.qty<=0)return;const p=PRODUCTS.find(x=>x.id===id);const price=G.prices[id]||p.basePrice;const priceRatio=Math.min(2,Math.max(0.5,p.basePrice/price));let demandBase=Math.floor(Math.random()*8)+4;let demandMult=1;G.activeEvents.forEach(e=>{if(e.effect==='demand_boost'&&(e.targets==='all'||e.targets?.includes(id)))demandMult*=e.mult;});const deptStaff=G.departmentStaff[p.category]||0;const deptBoostFactor=1+(deptStaff*0.15);const demand=Math.floor(demandBase*priceRatio*empBonus*deptBonus*deptBoostFactor*eventSalesMult*demandMult*p.popularity*diffMult*adBoost);const sold=Math.min(demand,item.qty);totalSalesQty+=sold;item.qty-=sold;item.qtySoldToday=(item.qtySoldToday||0)+sold;const revenue=sold*price;const costOfGoods=sold*p.cost;dailyProfit+=(revenue-costOfGoods);});G.stats.totalSold+=totalSalesQty;Object.entries(G.departmentStaff).forEach(([catId,staff])=>{dailyCost+=staff*200;});G.activeEvents.forEach(e=>{if(e.effect==='cost')dailyCost+=e.amount;if(e.effect==='rep_loss')G.reputation=Math.max(0,G.reputation-e.amount);});dailyProfit-=dailyCost;const finalProfit=dailyProfit*(1+G.totalEmployees*0.01);G.cash+=finalProfit;G.totalProfit+=Math.max(0,finalProfit);G.history.push(finalProfit);if(finalProfit>0){G.stats.profitStreakDays++;}else{G.stats.profitStreakDays=0;}const hasStock=Object.values(G.inventory).some(i=>i.qty>0);if(hasStock)G.satisfaction=Math.min(100,G.satisfaction+2);else G.satisfaction=Math.max(0,G.satisfaction-5);if(G.totalEmployees>0)G.satisfaction=Math.min(100,G.satisfaction+1);const lowInventoryPenalty=Object.entries(G.inventory).filter(([id,item])=>item.qty<3&&item.qty>0).length;G.satisfaction=Math.max(0,G.satisfaction-lowInventoryPenalty);G.reputation=Math.min(100,Math.max(0,G.reputation+(finalProfit>0?1:-2)));G.activeEvents=G.activeEvents.map(e=>({...e,daysLeft:e.daysLeft-1})).filter(e=>e.daysLeft>0);const eventProb=G.difficulty==='سهل'?0.15:(G.difficulty==='صعب'?0.35:0.25);if(Math.random()<eventProb&&G.activeEvents.length<3){const ev=EVENTS[Math.floor(Math.random()*EVENTS.length)];const daysLeft=ev.days||Math.floor(Math.random()*3)+2;G.activeEvents.push({...ev,daysLeft});G.stats.eventsCaught++;showToast(`⚡ ${ev.title}`,'yellow');playNotificationSound();addAdvisorMsg(`⚠️ ${ev.title}`);};const msgProfit=finalProfit>=0?`📈 ربح: ${fmt(finalProfit)} ر.س`:`📉 خسارة: ${fmt(finalProfit)} ر.س`;showToast(msgProfit+` | مبيعات: ${totalSalesQty}`,'yellow',finalProfit>=0?'emerald':'red');let newLvl=0;for(let i=LEVELS.length-1;i>=0;i--){if(G.totalProfit>=LEVELS[i].target){newLvl=i;break;}}if(newLvl>G.level){showToast(`🎉 ترقية! أنت الآن: ${LEVELS[newLvl].name}`,'blue');playSuccessSound();}updateAllUI();saveGame();}
+
+function getAdvice(){const tips=[];const lowStock=Object.entries(G.inventory).filter(([k,v])=>v.qty<5&&v.qty>0);if(Object.keys(G.inventory).length===0)tips.push('🔴 متجرك فارغ! اذهب للسوق واشترِ منتجات فوراً.');if(lowStock.length>0)tips.push(`⚠️ مخزون منخفض! أعد التزويد الآن.`);if(G.totalEmployees===0)tips.push('👥 بدون موظفين، المبيعات منخفضة! وظّف موظفين.');if(G.satisfaction<50)tips.push('😟 رضا العملاء منخفض. وفّر مخزون وأسعار معقولة.');if(G.reputation<40)tips.push('📉 سمعتك ضعيفة. استخدم الإعلانات!');if(tips.length===0)tips.push('✅ أداؤك ممتاز! استمر بهذا المسار.');const tip=tips[Math.floor(Math.random()*tips.length)];addAdvisorMsg(tip);playNotificationSound();}
+
+let simulatorCart=[];const SIMULATOR_PRODUCTS=PRODUCTS.filter(p=>p.category!=='premium').slice(0,50);
+
+function renderSimulatorProducts(){const c=document.getElementById('simulator-products');c.innerHTML=SIMULATOR_PRODUCTS.map(p=>`<button onclick="addToSimCart('${p.id}')" class="btn-action bg-[#261a3e] hover:bg-[#3a2a5e] border border-emerald-600 rounded-lg p-2 text-xs font-bold text-center transition-all"><div class="text-lg mb-1">${p.emoji}</div><div>${p.name}</div><div class="text-yellow-400">${p.basePrice} ر.س</div></button>`).join('');}
+
+function addToSimCart(productId){const product=PRODUCTS.find(p=>p.id===productId);if(!product)return;const existing=simulatorCart.find(item=>item.id===productId);if(existing){existing.qty++;}else{simulatorCart.push({id:productId,name:product.name,emoji:product.emoji,price:product.basePrice,qty:1});}playTone(700,0.08);updateSimulatorUI();}
+
+function removeFromSimCart(productId){simulatorCart=simulatorCart.filter(item=>item.id!==productId);playTone(400,0.08);updateSimulatorUI();}
+
+function decreaseSimCartQty(productId){const item=simulatorCart.find(i=>i.id===productId);if(item){if(item.qty>1){item.qty--;}else{removeFromSimCart(productId);}}updateSimulatorUI();}
+
+function updateSimulatorUI(){const itemCount=simulatorCart.reduce((sum,item)=>sum+item.qty,0);const subtotal=simulatorCart.reduce((sum,item)=>sum+(item.price*item.qty),0);const tax=Math.round(subtotal*0.15);const total=subtotal+tax;document.getElementById('sim-item-count').textContent=itemCount;document.getElementById('sim-total').textContent=fmt(total);document.getElementById('sim-tax').textContent=fmt(tax);const cartDiv=document.getElementById('sim-cart');if(simulatorCart.length===0){cartDiv.innerHTML='<p class="text-center text-gray-500">السلة فارغة</p>';return;}cartDiv.innerHTML=simulatorCart.map(item=>{const lineTotal=item.price*item.qty;return `<div class="flex justify-between items-center pb-2 border-b border-gray-700"><div><span class="text-emerald-400">${item.emoji}</span> <span>${item.name}</span></div><div class="flex items-center gap-2"><button onclick="decreaseSimCartQty('${item.id}')" class="btn-action bg-red-800 hover:bg-red-700 text-xs px-2 py-1 rounded">-</button><span class="w-8 text-center">${item.qty}</span><button onclick="addToSimCart('${item.id}')" class="btn-action bg-emerald-800 hover:bg-emerald-700 text-xs px-2 py-1 rounded">+</button><span class="w-16 text-right text-yellow-400 font-bold">${fmt(lineTotal)}</span><button onclick="removeFromSimCart('${item.id}')" class="btn-action bg-red-900 hover:bg-red-800 text-xs px-1 py-1 rounded">🗑️</button></div></div>`;}).join('');}
+
+function simulatorClearCart(){simulatorCart=[];playErrorSound();updateSimulatorUI();}
+
+function simulatorCheckout(){if(simulatorCart.length===0){showToast('❌ السلة فارغة!','red');playErrorSound();return;}const subtotal=simulatorCart.reduce((sum,item)=>sum+(item.price*item.qty),0);const tax=Math.round(subtotal*0.15);const total=subtotal+tax;const timestamp=new Date().toLocaleString('ar-SA');let receipt=`
+═══════════════════════════════
+       🛍️ فاتورة البيع 🛍️
+═══════════════════════════════
+التاريخ: ${timestamp}
+
+`;simulatorCart.forEach(item=>{receipt+=`${item.emoji} ${item.name.padEnd(15)} × ${item.qty.toString().padStart(2)} = ${fmt(item.price*item.qty)}\n`;});receipt+=`
+───────────────────────────────
+الإجمالي الفرعي: ${fmt(subtotal)} ر.س
+الضريبة (15%): ${fmt(tax)} ر.س
+═══════════════════════════════
+الإجمالي النهائي: ${fmt(total)} ر.س
+═══════════════════════════════
+شكراً لتسوقك معنا! 😊
+`;const receiptDiv=document.getElementById('simulator-receipt');const contentDiv=document.getElementById('receipt-content');contentDiv.textContent=receipt;receiptDiv.classList.remove('hidden');playSuccessSound();showToast(`✅ تمت العملية بنجاح! ${fmt(total)} ر.س`,'emerald');}
+
+function simulatorNewTransaction(){simulatorCart=[];document.getElementById('simulator-receipt').classList.add('hidden');updateSimulatorUI();playTone(600,0.1);}
+
+updateAllUI();
+</script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f4073aa62719846',t:'MTc3NzQ4ODIwMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
